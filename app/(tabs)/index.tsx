@@ -13,6 +13,8 @@ import { HeartRateChart } from "@/components/health/HeartRateChart";
 import { VitalGauge } from "@/components/health/VitalGauge";
 import { AlertBanner } from "@/components/health/AlertBanner";
 import { AlertModal } from "@/components/health/AlertModal";
+import { ActivityRings } from "@/components/health/ActivityRings";
+import { SleepCard } from "@/components/health/SleepCard";
 import { useVitals } from "@/hooks/useVitals";
 import { mockPet } from "@/data/mockData";
 import { colors, borderRadius, shadows, spacing } from "@/constants/theme";
@@ -83,34 +85,60 @@ export default function GuardScreen() {
                     </View>
                 )}
 
-                {/* 健康评分卡 */}
-                <View style={styles.section}>
-                    <View style={styles.scoreCard}>
-                        <View style={styles.scoreContent}>
-                            <View style={styles.scoreLabelRow}>
-                                <View style={styles.scoreIconBg}>
-                                    <Icon name="shield-checkmark" size={18} color={colors.secondary} />
-                                </View>
-                                <Text style={styles.scoreLabel}>健康评分</Text>
+                {/* 核心看板：健康评分 + 运动三环 */}
+                <View style={styles.dashboardRow}>
+                    <View style={styles.scoreCardHalf}>
+                        <View style={styles.scoreHeader}>
+                            <View style={styles.scoreIconSmall}>
+                                <Icon name="shield-checkmark" size={14} color={colors.secondary} />
                             </View>
-                            <View style={styles.scoreRow}>
-                                <Text style={styles.scoreValue}>
-                                    {mockPet.health_status.health_score}
-                                </Text>
-                                <Text style={styles.scoreMax}>/100</Text>
-                            </View>
-                            <View style={styles.statusBadge}>
-                                <Icon name="checkmark-circle" size={14} color={colors.secondary} />
-                                <Text style={styles.statusText}>状态良好</Text>
-                            </View>
+                            <Text style={styles.scoreLabelSmall}>健康评分</Text>
+                        </View>
+                        <View style={styles.scoreValueRow}>
+                            <Text style={styles.scoreValueBig}>{mockPet.health_status.health_score}</Text>
+                        </View>
+                        <View style={styles.scoreTag}>
+                            <Text style={styles.scoreTagText}>状态优</Text>
+                        </View>
+                    </View>
+                    <View style={styles.activityHalf}>
+                        <ActivityRings
+                            steps={8520}
+                            calories={320}
+                            activeMinutes={45}
+                            goals={{ steps: 10000, calories: 500, activeMinutes: 60 }}
+                        />
+                    </View>
+                </View>
+
+                {/* 睡眠与环境 */}
+                <View style={styles.sectionRow}>
+                    <View style={{ flex: 1.2 }}>
+                        <SleepCard duration="8h 30m" deepSleep="3h 15m" quality="良好" score={88} />
+                    </View>
+                    <View style={styles.envCard}>
+                        <Text style={styles.envTitle}>所处环境</Text>
+                        <View style={styles.envItem}>
+                            <Icon name="thermometer" size={16} color="#F97316" />
+                            <Text style={styles.envValue}>24.5°C</Text>
+                        </View>
+                        <View style={styles.envItem}>
+                            <Icon name="water" size={16} color="#3B82F6" />
+                            <Text style={styles.envValue}>52%</Text>
+                        </View>
+                        <View style={styles.envStatus}>
+                            <Text style={styles.envStatusText}>体感舒适</Text>
                         </View>
                     </View>
                 </View>
 
-                {/* 心率曲线 */}
-                <View style={styles.section}>
+                {/* 心率曲线 (点击下钻) */}
+                <Pressable
+                    onPress={() => router.push("/health/details/heart-rate")}
+                    style={styles.section}
+                >
                     <HeartRateChart points={ecgPoints} heartRate={vitals.heartRate} />
-                </View>
+                </Pressable>
 
                 {/* 体征仪表盘 */}
                 <View style={styles.section}>
@@ -122,15 +150,15 @@ export default function GuardScreen() {
                     </View>
                 </View>
 
-                {/* 快捷入口 */}
+                {/* 快捷入口 (专业垂直领域) */}
                 <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>健康管理</Text>
+                    <Text style={styles.sectionTitle}>守护工具箱</Text>
                     <View style={styles.quickLinks}>
                         {[
-                            { icon: "analytics", label: "AI 诊断", route: "/diagnosis/stool", color: colors.accent },
-                            { icon: "document-text", label: "健康档案", route: "/health/profile", color: colors.primary },
-                            { icon: "medical", label: "就医记录", route: "/health/records", color: colors.secondary },
-                            { icon: "fitness", label: "体重趋势", route: "/health/weight", color: colors.warning },
+                            { icon: "analytics", label: "健康深度报告", route: "/health/reports", color: colors.accent },
+                            { icon: "location", label: "实时安全定位", route: "/health/map-realtime", color: colors.secondary },
+                            { icon: "notifications", label: "异常告警中心", route: "/health/alerts", color: colors.error },
+                            { icon: "happy", label: "情绪与行为日志", route: "/health/emotions", color: colors.warning },
                         ].map((item) => (
                             <Pressable
                                 key={item.route}
@@ -138,9 +166,12 @@ export default function GuardScreen() {
                                 style={({ pressed }) => [styles.quickLink, pressed && styles.btnPressed]}
                             >
                                 <View style={[styles.quickLinkIcon, { backgroundColor: `${item.color}15` }]}>
-                                    <Icon name={item.icon} size={22} color={item.color} />
+                                    <Icon name={item.icon as any} size={22} color={item.color} />
                                 </View>
-                                <Text style={styles.quickLinkLabel}>{item.label}</Text>
+                                <View style={styles.quickLinkContent}>
+                                    <Text style={styles.quickLinkLabel}>{item.label}</Text>
+                                    <Text style={styles.quickLinkSub}>{item.route === '/health/reports' ? 'HRV与对比分析' : item.route === '/health/map-realtime' ? '轨迹回放与围栏' : item.route === '/health/alerts' ? '异常记录追踪' : '情绪日历与AI宠语'}</Text>
+                                </View>
                                 <Icon name="chevron-forward" size={16} color={colors.muted} />
                             </Pressable>
                         ))}
@@ -229,6 +260,104 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: "700",
         marginBottom: spacing.md,
+        marginTop: spacing.sm,
+    },
+    dashboardRow: {
+        flexDirection: 'row',
+        paddingHorizontal: spacing.lg,
+        gap: 12,
+        marginBottom: 12,
+    },
+    scoreCardHalf: {
+        flex: 0.8,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 20,
+        padding: 16,
+        borderWidth: 1,
+        borderColor: '#F1F5F9',
+        justifyContent: 'center',
+    },
+    activityHalf: {
+        flex: 1.2,
+    },
+    scoreHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+        marginBottom: 8,
+    },
+    scoreIconSmall: {
+        width: 24,
+        height: 24,
+        backgroundColor: `${colors.secondary}15`,
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    scoreLabelSmall: {
+        fontSize: 12,
+        color: '#64748B',
+    },
+    scoreValueBig: {
+        fontSize: 42,
+        fontWeight: 'bold',
+        color: colors.secondary,
+    },
+    scoreTag: {
+        backgroundColor: `${colors.secondary}15`,
+        paddingHorizontal: 8,
+        paddingVertical: 2,
+        borderRadius: 6,
+        alignSelf: 'flex-start',
+        marginTop: 4,
+    },
+    scoreTagText: {
+        fontSize: 11,
+        color: colors.secondary,
+        fontWeight: '600',
+    },
+    sectionRow: {
+        flexDirection: 'row',
+        paddingHorizontal: spacing.lg,
+        gap: 12,
+        marginBottom: 20,
+    },
+    envCard: {
+        flex: 0.8,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 20,
+        padding: 16,
+        borderWidth: 1,
+        borderColor: '#F1F5F9',
+    },
+    envTitle: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: '#1E293B',
+        marginBottom: 12,
+    },
+    envItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        marginBottom: 8,
+    },
+    envValue: {
+        fontSize: 15,
+        fontWeight: '600',
+        color: '#1E293B',
+    },
+    envStatus: {
+        marginTop: 'auto',
+        backgroundColor: '#F0F9FF',
+        paddingVertical: 4,
+        borderRadius: 6,
+        alignItems: 'center',
+    },
+    envStatusText: {
+        fontSize: 11,
+        color: '#0369A1',
+        fontWeight: '600',
     },
     scoreCard: {
         backgroundColor: colors.white,
@@ -307,12 +436,19 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-    quickLinkLabel: {
+    quickLinkContent: {
         flex: 1,
+        marginLeft: spacing.md,
+    },
+    quickLinkLabel: {
         color: colors.foreground,
         fontSize: 15,
         fontWeight: "600",
-        marginLeft: spacing.md,
+    },
+    quickLinkSub: {
+        color: colors.muted,
+        fontSize: 11,
+        marginTop: 2,
     },
     lostModeBtn: {
         flexDirection: "row",

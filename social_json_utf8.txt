@@ -1,0 +1,159 @@
+﻿{
+  "id": "add-social-features",
+  "title": "瀹屽杽绀句氦鍔熻兘妯″潡 (Trust Social)",
+  "deltaCount": 4,
+  "deltas": [
+    {
+      "spec": "trust-social",
+      "operation": "ADDED",
+      "description": "Add requirement: The system SHALL generate AI-powered first-person diaries from pet's perspective based on HRV (mood) and step count (vitality) data.",
+      "requirement": {
+        "text": "The system SHALL generate AI-powered first-person diaries from pet's perspective based on HRV (mood) and step count (vitality) data.",
+        "scenarios": [
+          {
+            "rawText": "- **WHEN** user opens the social page\n- **THEN** display today's AI-generated mood diary with pet's emotional state and activity summary"
+          },
+          {
+            "rawText": "- **WHEN** user taps \"鏌ョ湅鍏ㄩ儴\" on diary section\n- **THEN** navigate to diary history page showing past 30 days of diaries"
+          },
+          {
+            "rawText": "- **WHEN** user taps share button on a diary card\n- **THEN** generate shareable image with diary content and pet avatar\n\n---"
+          }
+        ]
+      },
+      "requirements": [
+        {
+          "text": "The system SHALL generate AI-powered first-person diaries from pet's perspective based on HRV (mood) and step count (vitality) data.",
+          "scenarios": [
+            {
+              "rawText": "- **WHEN** user opens the social page\n- **THEN** display today's AI-generated mood diary with pet's emotional state and activity summary"
+            },
+            {
+              "rawText": "- **WHEN** user taps \"鏌ョ湅鍏ㄩ儴\" on diary section\n- **THEN** navigate to diary history page showing past 30 days of diaries"
+            },
+            {
+              "rawText": "- **WHEN** user taps share button on a diary card\n- **THEN** generate shareable image with diary content and pet avatar\n\n---"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "spec": "trust-social",
+      "operation": "ADDED",
+      "description": "Add requirement: The system SHALL provide vaccine certificate verification through OCR recognition and manual review to grant \"Green Shield\" social trust badge.",
+      "requirement": {
+        "text": "The system SHALL provide vaccine certificate verification through OCR recognition and manual review to grant \"Green Shield\" social trust badge.",
+        "scenarios": [
+          {
+            "rawText": "- **WHEN** user taps the green shield section without certification\n- **THEN** navigate to vaccine upload page with camera/gallery picker"
+          },
+          {
+            "rawText": "- **WHEN** user submits vaccine certificate image\n- **THEN** system performs OCR to extract vaccine information and displays preview for confirmation"
+          },
+          {
+            "rawText": "- **WHEN** pet has verified vaccine certification\n- **THEN** display green shield badge with \"缁跨浘璁よ瘉閫氳繃\" status on social page and profile"
+          },
+          {
+            "rawText": "- **WHEN** vaccine certificate is submitted but not yet reviewed\n- **THEN** display \"瀹℃牳涓璡" status with estimated review time\n\n---"
+          }
+        ]
+      },
+      "requirements": [
+        {
+          "text": "The system SHALL provide vaccine certificate verification through OCR recognition and manual review to grant \"Green Shield\" social trust badge.",
+          "scenarios": [
+            {
+              "rawText": "- **WHEN** user taps the green shield section without certification\n- **THEN** navigate to vaccine upload page with camera/gallery picker"
+            },
+            {
+              "rawText": "- **WHEN** user submits vaccine certificate image\n- **THEN** system performs OCR to extract vaccine information and displays preview for confirmation"
+            },
+            {
+              "rawText": "- **WHEN** pet has verified vaccine certification\n- **THEN** display green shield badge with \"缁跨浘璁よ瘉閫氳繃\" status on social page and profile"
+            },
+            {
+              "rawText": "- **WHEN** vaccine certificate is submitted but not yet reviewed\n- **THEN** display \"瀹℃牳涓璡" status with estimated review time\n\n---"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "spec": "trust-social",
+      "operation": "ADDED",
+      "description": "Add requirement: The system SHALL provide weekly/monthly step count leaderboards and deep sleep duration leaderboards (for cats).",
+      "requirement": {
+        "text": "The system SHALL provide weekly/monthly step count leaderboards and deep sleep duration leaderboards (for cats).",
+        "scenarios": [
+          {
+            "rawText": "- **WHEN** user views the leaderboard section\n- **THEN** display top 10 pets ranked by weekly step count with user's pet highlighted"
+          },
+          {
+            "rawText": "- **WHEN** user taps \"鍛ㄦ\" / \"鏈堟\" toggle\n- **THEN** update leaderboard data accordingly"
+          },
+          {
+            "rawText": "- **WHEN** user taps \"鏌ョ湅鍏ㄩ儴\"\n- **THEN** navigate to full leaderboard page with pagination\n\n---"
+          }
+        ]
+      },
+      "requirements": [
+        {
+          "text": "The system SHALL provide weekly/monthly step count leaderboards and deep sleep duration leaderboards (for cats).",
+          "scenarios": [
+            {
+              "rawText": "- **WHEN** user views the leaderboard section\n- **THEN** display top 10 pets ranked by weekly step count with user's pet highlighted"
+            },
+            {
+              "rawText": "- **WHEN** user taps \"鍛ㄦ\" / \"鏈堟\" toggle\n- **THEN** update leaderboard data accordingly"
+            },
+            {
+              "rawText": "- **WHEN** user taps \"鏌ョ湅鍏ㄩ儴\"\n- **THEN** navigate to full leaderboard page with pagination\n\n---"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "spec": "trust-social",
+      "operation": "ADDED",
+      "description": "Add requirement: The system SHALL allow users to initiate step count challenges with friends, with automatic result posting for losers.",
+      "requirement": {
+        "text": "The system SHALL allow users to initiate step count challenges with friends, with automatic result posting for losers.",
+        "scenarios": [
+          {
+            "rawText": "- **WHEN** user taps \"鍙戣捣 1V1 鎸戞垬\" button\n- **THEN** display friend picker to select challenge opponent"
+          },
+          {
+            "rawText": "- **WHEN** user receives a challenge invitation\n- **THEN** display challenge details with accept/decline options"
+          },
+          {
+            "rawText": "- **WHEN** challenge period ends\n- **THEN** compare step counts and declare winner"
+          },
+          {
+            "rawText": "- **WHEN** a pet loses the challenge\n- **THEN** automatically post defeat announcement to social feed (with opt-out option)"
+          }
+        ]
+      },
+      "requirements": [
+        {
+          "text": "The system SHALL allow users to initiate step count challenges with friends, with automatic result posting for losers.",
+          "scenarios": [
+            {
+              "rawText": "- **WHEN** user taps \"鍙戣捣 1V1 鎸戞垬\" button\n- **THEN** display friend picker to select challenge opponent"
+            },
+            {
+              "rawText": "- **WHEN** user receives a challenge invitation\n- **THEN** display challenge details with accept/decline options"
+            },
+            {
+              "rawText": "- **WHEN** challenge period ends\n- **THEN** compare step counts and declare winner"
+            },
+            {
+              "rawText": "- **WHEN** a pet loses the challenge\n- **THEN** automatically post defeat announcement to social feed (with opt-out option)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

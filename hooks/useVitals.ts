@@ -50,8 +50,8 @@ export function useVitals(petId: string) {
     useEffect(() => {
         loadHistory();
 
-        // 每 2 秒更新一次数据
-        intervalRef.current = setInterval(updateVitals, 2000);
+        // 模拟 4G 实时更新：每 1 秒更新一次数据
+        intervalRef.current = setInterval(updateVitals, 1000);
 
         return () => {
             if (intervalRef.current) {

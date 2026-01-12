@@ -13,19 +13,11 @@ import { MoodDiaryCard } from "@/components/social/MoodDiaryCard";
 import { GreenShieldBadge } from "@/components/social/GreenShieldBadge";
 import { LeaderboardCard } from "@/components/social/LeaderboardCard";
 import { mockMoodDiaries, mockLeaderboard, mockGreenShield } from "@/data/mockData";
-
-const colors = {
-    primary: "#3B82F6",
-    background: "#F8FAFC",
-    foreground: "#1E293B",
-    muted: "#64748B",
-    border: "#E2E8F0",
-    white: "#FFFFFF",
-};
+import { Theme } from "@/constants/theme";
+import { Section } from "@/components/ui/Section";
 
 /**
- * 社交页 - 整合情感日记 + 绿盾认证 + 活力挑战赛
- * Task 5.1, 5.2, 5.3
+ * 社交页 - 重构版
  */
 export default function SocialScreen() {
     const router = useRouter();
@@ -51,24 +43,58 @@ export default function SocialScreen() {
         >
             {/* 顶部标题 */}
             <View style={styles.header}>
-                <Text style={styles.headerTitle}>社交圈</Text>
+                <Text style={styles.headerTitle}>社区</Text>
+                <Pressable onPress={() => router.push("/(tabs)/map")} style={styles.mapIcon}>
+                    <Icon name="map-outline" size={24} color={Theme.colors.primary} />
+                </Pressable>
+            </View>
+
+            {/* 快速功能入口 */}
+            <View style={styles.quickActions}>
+                <Pressable onPress={() => router.push("/community/matching")} style={styles.actionItem}>
+                    <View style={[styles.actionIcon, { backgroundColor: '#FFEDD5' }]}>
+                        <Icon name="matching" size={24} color="#F97316" />
+                    </View>
+                    <Text style={styles.actionText}>宠物配对</Text>
+                </Pressable>
+                <Pressable onPress={() => router.push("/community/charity")} style={styles.actionItem}>
+                    <View style={[styles.actionIcon, { backgroundColor: '#DCFCE7' }]}>
+                        <Icon name="charity" size={24} color="#22C55E" />
+                    </View>
+                    <Text style={styles.actionText}>爱心公益</Text>
+                </Pressable>
+                <Pressable onPress={() => router.push("/community/events")} style={styles.actionItem}>
+                    <View style={[styles.actionIcon, { backgroundColor: '#DBEAFE' }]}>
+                        <Icon name="calendar-outline" size={24} color="#3B82F6" />
+                    </View>
+                    <Text style={styles.actionText}>宠友活动</Text>
+                </Pressable>
+                <Pressable onPress={() => router.push("/community/wedding")} style={styles.actionItem}>
+                    <View style={[styles.actionIcon, { backgroundColor: '#FCE7F3' }]}>
+                        <Icon name="infinite-outline" size={24} color="#EC4899" />
+                    </View>
+                    <Text style={styles.actionText}>宠物婚礼</Text>
+                </Pressable>
             </View>
 
             {/* 绿盾认证状态 */}
-            <View style={styles.section}>
+            <View style={styles.sectionPadding}>
                 <GreenShieldBadge info={mockGreenShield} />
             </View>
 
             {/* 情感日记 */}
-            <View style={styles.section}>
-                <View style={styles.sectionHeader}>
-                    <Text style={styles.sectionTitle}>情感日记</Text>
+            <Section
+                title="情感日记"
+                containerStyle={styles.sectionPadding}
+                style={styles.sectionContent}
+            >
+                <View style={styles.titleActionContainer}>
                     <Pressable
                         onPress={() => router.push("/social/diary-history")}
                         style={styles.viewAllBtn}
                     >
                         <Text style={styles.viewAllText}>查看全部</Text>
-                        <Icon name="chevron-forward" size={16} color={colors.primary} />
+                        <Icon name="chevron-forward" size={16} color={Theme.colors.primary} />
                     </Pressable>
                 </View>
                 {todayDiary && (
@@ -77,21 +103,20 @@ export default function SocialScreen() {
                         onPress={() => router.push("/social/diary-history")}
                     />
                 )}
-            </View>
+            </Section>
 
             {/* 活力挑战赛 */}
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>活力挑战赛</Text>
+            <Section title="活力挑战赛" containerStyle={styles.sectionPadding}>
                 <LeaderboardCard
                     data={mockLeaderboard}
                     showToggle={true}
                     showViewAll={true}
                     limit={3}
                 />
-            </View>
+            </Section>
 
             {/* 发起 PK 按钮 */}
-            <View style={[styles.section, { marginBottom: 32 }]}>
+            <View style={[styles.sectionPadding, { marginBottom: Theme.spacing.xl }]}>
                 <Pressable
                     onPress={() => router.push("/social/challenge")}
                     style={({ pressed }) => [
@@ -110,57 +135,82 @@ export default function SocialScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.background,
+        backgroundColor: Theme.colors.background,
     },
     header: {
         paddingTop: 48,
-        paddingBottom: 16,
-        paddingHorizontal: 16,
+        paddingBottom: Theme.spacing.md,
+        paddingHorizontal: Theme.spacing.md,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     headerTitle: {
-        color: colors.foreground,
-        fontSize: 24,
-        fontWeight: "bold",
+        ...Theme.typography.h1,
     },
-    section: {
-        paddingHorizontal: 16,
-        marginBottom: 20,
+    mapIcon: {
+        padding: 4,
     },
-    sectionHeader: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: 12,
+    quickActions: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: Theme.spacing.md,
+        marginBottom: Theme.spacing.xl,
     },
-    sectionTitle: {
-        color: colors.foreground,
-        fontSize: 18,
-        fontWeight: "bold",
-        marginBottom: 12,
+    actionItem: {
+        alignItems: 'center',
+        flex: 1,
+    },
+    actionIcon: {
+        width: 48,
+        height: 48,
+        borderRadius: 24,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 8,
+    },
+    actionText: {
+        fontSize: 12,
+        color: '#475569',
+        fontWeight: '500',
+    },
+    sectionPadding: {
+        paddingHorizontal: Theme.spacing.md,
+        marginBottom: Theme.spacing.md,
+    },
+    sectionContent: {
+        marginTop: -Theme.spacing.md, // 抵消 Section Title 默认间距，因为我们要放自定义操作项
+    },
+    titleActionContainer: {
+        position: 'absolute',
+        top: -Theme.spacing.xl - 4, // 精确对齐标题右侧
+        right: 0,
+        zIndex: 1,
     },
     viewAllBtn: {
         flexDirection: "row",
         alignItems: "center",
     },
     viewAllText: {
-        color: colors.primary,
+        ...Theme.typography.caption,
+        color: Theme.colors.primary,
         fontSize: 14,
     },
     pkButton: {
-        backgroundColor: colors.primary,
-        borderRadius: 16,
-        paddingVertical: 16,
+        backgroundColor: Theme.colors.primary,
+        borderRadius: Theme.radius.md,
+        paddingVertical: Theme.spacing.md,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
+        ...Theme.shadows.sm,
     },
     pkButtonPressed: {
         opacity: 0.8,
     },
     pkButtonText: {
-        color: colors.white,
-        fontSize: 18,
-        fontWeight: "bold",
-        marginLeft: 8,
+        ...Theme.typography.h2,
+        color: Theme.colors.surface,
+        marginLeft: Theme.spacing.sm,
     },
 });

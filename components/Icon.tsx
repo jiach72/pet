@@ -108,6 +108,20 @@ import {
     Hammer,
     Construction,
     Package,
+    Calendar,
+    Bone,
+    ShoppingBasket,
+    Cookie,
+    Milk,
+    Droplets,
+    Pill,
+    Stethoscope,
+    HandHeart,
+    Infinity,
+    Compass as CompassIcon,
+    LayoutGrid,
+    HeartHandshake,
+    UserPlus,
 } from "lucide-react-native";
 
 // 定义 Lucide 图标的通用 Props 类型，以解决映射表类型不匹配问题
@@ -122,8 +136,14 @@ const iconMap: Record<string, LucideIcon> = {
     // Tab 导航
     "shield-checkmark": ShieldCheck,
     "people": Users,
+    "people-outline": Users,
     "map": MapIcon,
+    "map-outline": MapIcon,
     "person": User,
+    "person-outline": User,
+    "compass-outline": CompassIcon,
+    "cart-outline": ShoppingCart,
+    "layout-grid": LayoutGrid,
 
     // 健康
     "heart": Heart,
@@ -132,7 +152,7 @@ const iconMap: Record<string, LucideIcon> = {
     "pulse": Activity,
     "flash": Zap,
     "fitness": Dumbbell,
-    "medical": Cross,
+    "medical": Stethoscope,
     "paw": PawPrint,
 
     // 通用
@@ -152,6 +172,7 @@ const iconMap: Record<string, LucideIcon> = {
     "create": Edit,
     "pencil": Pencil,
     "settings": Settings,
+    "settings-outline": Settings,
     "ellipsis-horizontal": MoreHorizontal,
 
     // 预警
@@ -197,7 +218,8 @@ const iconMap: Record<string, LucideIcon> = {
     "radio-button-on": Circle,
     "radio-button-off": Circle,
     "pause": Square,
-    "play": Plus,
+    "play": Plus, // 临时使用 Plus，后续可替换为 Play 图标
+    "play-circle": Plus,
     "trash-outline": Trash2,
     "trash": Trash2,
     "cog": Settings,
@@ -209,7 +231,11 @@ const iconMap: Record<string, LucideIcon> = {
     "home": MapIcon,
     "storefront": ShoppingBag,
     "leaf": Flame,
-    "calendar": Bell,
+    "calendar": Calendar,
+    "calendar-outline": Calendar,
+    "heart-outline": Heart,
+    "rose-outline": HandHeart, // 公益
+    "infinite-outline": Infinity, // 婚礼
     "book": FileText,
     "shield": Shield,
     "shield-outline": Shield,
@@ -228,7 +254,7 @@ const iconMap: Record<string, LucideIcon> = {
     // 商城
     "cart": ShoppingCart,
     "bag": ShoppingBag,
-    "basket": ShoppingBag,
+    "basket": ShoppingBasket,
     "pricetag": Tag,
     "gift": Gift,
     "card": CreditCard,
@@ -236,6 +262,15 @@ const iconMap: Record<string, LucideIcon> = {
     "wallet": Wallet,
     "receipt": FileText,
     "barcode": Scan,
+
+    // 业务特定
+    "pet-food": Bone,
+    "pet-snacks": Cookie,
+    "pet-toys": Gamepad2,
+    "pet-grooming": Droplets,
+    "pet-medical": Pill,
+    "matching": UserPlus,
+    "charity": HandHeart,
 
     // POI
     "cafe": Coffee,

@@ -1,26 +1,19 @@
 import React from "react";
-import { View, Text, ScrollView, Pressable, StyleSheet, Image } from "react-native";
+import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
 import Icon from "@/components/Icon";
 import { mockPet } from "@/data/mockData";
-
-const colors = {
-    primary: "#3B82F6",
-    background: "#F8FAFC",
-    foreground: "#1E293B",
-    muted: "#64748B",
-    border: "#E2E8F0",
-    white: "#FFFFFF",
-    green: "#10B981",
-};
+import { Theme } from "@/constants/theme";
+import { Card } from "@/components/ui/Card";
+import { Section } from "@/components/ui/Section";
 
 /**
- * 宠物档案页 (Task 4.2)
+ * 宠物档案页 - 重构版
  */
 export default function ProfileScreen() {
     return (
         <ScrollView style={styles.container}>
             {/* 宠物头像卡 */}
-            <View style={styles.profileCard}>
+            <Card style={styles.profileCard} padding="xl">
                 <View style={styles.avatar}>
                     <Text style={styles.avatarEmoji}>🐕</Text>
                 </View>
@@ -44,15 +37,14 @@ export default function ProfileScreen() {
                         <Text style={styles.infoLabel}>性别</Text>
                     </View>
                 </View>
-            </View>
+            </Card>
 
             {/* 健康状态 */}
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>健康状态</Text>
-                <View style={styles.healthCard}>
+            <Section title="健康状态" containerStyle={styles.sectionPadding}>
+                <Card>
                     <View style={styles.healthItem}>
-                        <View style={styles.healthIcon}>
-                            <Icon name="shield-checkmark" size={20} color={colors.green} />
+                        <View style={[styles.healthIcon, { backgroundColor: '#F0FDF4' }]}>
+                            <Icon name="shield-checkmark" size={20} color={Theme.colors.status.health} />
                         </View>
                         <View style={styles.healthContent}>
                             <Text style={styles.healthLabel}>健康评分</Text>
@@ -62,11 +54,11 @@ export default function ProfileScreen() {
                         </View>
                     </View>
 
-                    <View style={styles.healthDivider} />
+                    <View style={styles.divider} />
 
                     <View style={styles.healthItem}>
-                        <View style={[styles.healthIcon, { backgroundColor: "#DCFCE7" }]}>
-                            <Icon name="checkmark-circle" size={20} color={colors.green} />
+                        <View style={[styles.healthIcon, { backgroundColor: '#F0FDF4' }]}>
+                            <Icon name="checkmark-circle" size={20} color={Theme.colors.status.health} />
                         </View>
                         <View style={styles.healthContent}>
                             <Text style={styles.healthLabel}>疫苗状态</Text>
@@ -74,46 +66,45 @@ export default function ProfileScreen() {
                         </View>
                     </View>
 
-                    <View style={styles.healthDivider} />
+                    <View style={styles.divider} />
 
                     <View style={styles.healthItem}>
-                        <View style={[styles.healthIcon, { backgroundColor: "#EFF6FF" }]}>
-                            <Icon name="trending-up" size={20} color={colors.primary} />
+                        <View style={[styles.healthIcon, { backgroundColor: '#EFF6FF' }]}>
+                            <Icon name="trending-up" size={20} color={Theme.colors.primary} />
                         </View>
                         <View style={styles.healthContent}>
                             <Text style={styles.healthLabel}>体重趋势</Text>
                             <Text style={styles.healthValue}>稳定</Text>
                         </View>
                     </View>
-                </View>
-            </View>
+                </Card>
+            </Section>
 
             {/* 设备信息 */}
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>设备绑定</Text>
-                <View style={styles.deviceCard}>
+            <Section title="设备绑定" containerStyle={styles.sectionPadding}>
+                <Card variant="elevated" style={styles.deviceCard}>
                     <View style={styles.deviceIcon}>
-                        <Icon name="bluetooth" size={24} color={colors.primary} />
+                        <Icon name="bluetooth" size={24} color={Theme.colors.primary} />
                     </View>
                     <View style={styles.deviceInfo}>
                         <Text style={styles.deviceName}>PetPulse Pro</Text>
                         <Text style={styles.deviceStatus}>已连接 · 电量 85%</Text>
                     </View>
-                    <View style={styles.connectedBadge}>
-                        <Text style={styles.connectedText}>在线</Text>
+                    <View style={styles.statusBadge}>
+                        <Text style={styles.statusText}>在线</Text>
                     </View>
-                </View>
-            </View>
+                </Card>
+            </Section>
 
             {/* 操作按钮 */}
-            <View style={styles.section}>
+            <View style={styles.sectionPadding}>
                 <Pressable style={styles.editBtn}>
-                    <Icon name="create" size={20} color={colors.primary} />
+                    <Icon name="create" size={20} color={Theme.colors.primary} />
                     <Text style={styles.editBtnText}>编辑档案</Text>
                 </Pressable>
             </View>
 
-            <View style={{ height: 32 }} />
+            <View style={{ height: Theme.spacing.xl }} />
         </ScrollView>
     );
 }
@@ -121,43 +112,41 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.background,
+        backgroundColor: Theme.colors.background,
+    },
+    sectionPadding: {
+        paddingHorizontal: Theme.spacing.md,
     },
     profileCard: {
-        backgroundColor: colors.white,
-        margin: 16,
-        borderRadius: 20,
-        padding: 24,
+        margin: Theme.spacing.md,
         alignItems: "center",
     },
     avatar: {
         width: 100,
         height: 100,
-        borderRadius: 50,
+        borderRadius: Theme.radius.full,
         backgroundColor: "#EFF6FF",
         alignItems: "center",
         justifyContent: "center",
-        marginBottom: 16,
+        marginBottom: Theme.spacing.md,
     },
     avatarEmoji: {
         fontSize: 56,
     },
     petName: {
-        color: colors.foreground,
-        fontSize: 24,
-        fontWeight: "bold",
+        ...Theme.typography.h1,
     },
     petBreed: {
-        color: colors.muted,
+        ...Theme.typography.body,
         fontSize: 15,
-        marginTop: 4,
+        marginTop: Theme.spacing.xs,
     },
     infoGrid: {
         flexDirection: "row",
-        marginTop: 24,
-        paddingTop: 24,
+        marginTop: Theme.spacing.lg,
+        paddingTop: Theme.spacing.lg,
         borderTopWidth: 1,
-        borderTopColor: colors.border,
+        borderTopColor: Theme.colors.border,
         width: "100%",
     },
     infoItem: {
@@ -165,118 +154,94 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     infoValue: {
-        color: colors.foreground,
-        fontSize: 18,
-        fontWeight: "bold",
+        ...Theme.typography.h3,
     },
     infoLabel: {
-        color: colors.muted,
-        fontSize: 13,
-        marginTop: 4,
+        ...Theme.typography.caption,
+        marginTop: Theme.spacing.xs,
     },
     infoDivider: {
         width: 1,
-        backgroundColor: colors.border,
-    },
-    section: {
-        paddingHorizontal: 16,
-        marginBottom: 16,
-    },
-    sectionTitle: {
-        color: colors.foreground,
-        fontSize: 17,
-        fontWeight: "bold",
-        marginBottom: 12,
-    },
-    healthCard: {
-        backgroundColor: colors.white,
-        borderRadius: 16,
-        padding: 16,
+        backgroundColor: Theme.colors.border,
     },
     healthItem: {
         flexDirection: "row",
         alignItems: "center",
-        paddingVertical: 12,
+        paddingVertical: Theme.spacing.sm,
     },
     healthIcon: {
         width: 40,
         height: 40,
-        borderRadius: 10,
-        backgroundColor: "#DCFCE7",
+        borderRadius: Theme.radius.sm,
         alignItems: "center",
         justifyContent: "center",
     },
     healthContent: {
-        marginLeft: 12,
+        marginLeft: Theme.spacing.md,
     },
     healthLabel: {
-        color: colors.muted,
-        fontSize: 13,
+        ...Theme.typography.caption,
     },
     healthValue: {
-        color: colors.foreground,
+        ...Theme.typography.h3,
         fontSize: 16,
-        fontWeight: "600",
         marginTop: 2,
     },
-    healthDivider: {
+    divider: {
         height: 1,
-        backgroundColor: colors.border,
+        backgroundColor: Theme.colors.border,
+        marginVertical: 4,
     },
     deviceCard: {
         flexDirection: "row",
         alignItems: "center",
-        backgroundColor: colors.white,
-        borderRadius: 16,
-        padding: 16,
+        padding: Theme.spacing.md,
     },
     deviceIcon: {
         width: 48,
         height: 48,
-        borderRadius: 12,
+        borderRadius: Theme.radius.md,
         backgroundColor: "#EFF6FF",
         alignItems: "center",
         justifyContent: "center",
     },
     deviceInfo: {
         flex: 1,
-        marginLeft: 12,
+        marginLeft: Theme.spacing.md,
     },
     deviceName: {
-        color: colors.foreground,
+        ...Theme.typography.h3,
         fontSize: 16,
-        fontWeight: "600",
     },
     deviceStatus: {
-        color: colors.muted,
-        fontSize: 13,
+        ...Theme.typography.caption,
         marginTop: 2,
     },
-    connectedBadge: {
-        backgroundColor: "#DCFCE7",
-        paddingVertical: 4,
-        paddingHorizontal: 10,
-        borderRadius: 12,
+    statusBadge: {
+        backgroundColor: '#F0FDF4',
+        paddingVertical: Theme.spacing.xs,
+        paddingHorizontal: Theme.spacing.sm,
+        borderRadius: Theme.radius.full,
     },
-    connectedText: {
-        color: colors.green,
+    statusText: {
+        color: Theme.colors.status.health,
         fontSize: 13,
-        fontWeight: "500",
+        fontWeight: "600",
     },
     editBtn: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: colors.white,
-        paddingVertical: 14,
-        borderRadius: 12,
+        backgroundColor: Theme.colors.surface,
+        paddingVertical: Theme.spacing.md,
+        borderRadius: Theme.radius.md,
         borderWidth: 1,
-        borderColor: colors.primary,
-        gap: 8,
+        borderColor: Theme.colors.primary,
+        gap: Theme.spacing.sm,
     },
     editBtnText: {
-        color: colors.primary,
+        ...Theme.typography.h3,
+        color: Theme.colors.primary,
         fontSize: 16,
-        fontWeight: "600",
     },
 });

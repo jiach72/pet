@@ -3,17 +3,9 @@ import { View, Text, ScrollView, Pressable, StyleSheet, Dimensions } from "react
 import Icon from "@/components/Icon";
 import Svg, { Line, Circle, Polyline, Text as SvgText } from "react-native-svg";
 import type { WeightRecord } from "@/types";
-
-const colors = {
-    primary: "#3B82F6",
-    background: "#F8FAFC",
-    foreground: "#1E293B",
-    muted: "#64748B",
-    border: "#E2E8F0",
-    white: "#FFFFFF",
-    green: "#10B981",
-    orange: "#F97316",
-};
+import { Theme } from "@/constants/theme";
+import { Card } from "@/components/ui/Card";
+import { Section } from "@/components/ui/Section";
 
 const { width: screenWidth } = Dimensions.get("window");
 const CHART_WIDTH = screenWidth - 64;
@@ -31,7 +23,7 @@ const mockWeightData: WeightRecord[] = [
 ];
 
 /**
- * 体重趋势页 (Task 4.5)
+ * 体重趋势页 - 重构版
  */
 export default function WeightScreen() {
     const currentWeight = mockWeightData[mockWeightData.length - 1].weight;
@@ -55,7 +47,7 @@ export default function WeightScreen() {
     return (
         <ScrollView style={styles.container}>
             {/* 当前体重卡 */}
-            <View style={styles.currentCard}>
+            <Card style={styles.currentCard} padding="lg">
                 <View style={styles.currentContent}>
                     <Text style={styles.currentLabel}>当前体重</Text>
                     <View style={styles.currentRow}>
@@ -66,12 +58,12 @@ export default function WeightScreen() {
                         <Icon
                             name={change >= 0 ? "arrow-up" : "arrow-down"}
                             size={16}
-                            color={Math.abs(change) > 0.5 ? colors.orange : colors.green}
+                            color={Math.abs(change) > 0.5 ? Theme.colors.accent : Theme.colors.secondary}
                         />
                         <Text
                             style={[
                                 styles.changeText,
-                                { color: Math.abs(change) > 0.5 ? colors.orange : colors.green },
+                                { color: Math.abs(change) > 0.5 ? Theme.colors.accent : Theme.colors.secondary },
                             ]}
                         >
                             {change >= 0 ? "+" : ""}
@@ -80,14 +72,13 @@ export default function WeightScreen() {
                     </View>
                 </View>
                 <View style={styles.currentIcon}>
-                    <Icon name="fitness" size={40} color={colors.primary} />
+                    <Icon name="fitness" size={40} color={Theme.colors.primary} />
                 </View>
-            </View>
+            </Card>
 
             {/* 趋势图 */}
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>近期趋势</Text>
-                <View style={styles.chartCard}>
+            <Section title="近期趋势" containerStyle={styles.sectionPadding}>
+                <Card padding="sm">
                     <Svg width={CHART_WIDTH} height={CHART_HEIGHT}>
                         {/* Y轴标签 */}
                         {[0, 1, 2, 3, 4].map((i) => {
@@ -100,7 +91,7 @@ export default function WeightScreen() {
                                         y1={y}
                                         x2={CHART_WIDTH - PADDING}
                                         y2={y}
-                                        stroke={colors.border}
+                                        stroke={Theme.colors.border}
                                         strokeWidth={1}
                                         strokeDasharray="4,4"
                                     />
@@ -108,7 +99,7 @@ export default function WeightScreen() {
                                         x={PADDING - 8}
                                         y={y + 4}
                                         fontSize={10}
-                                        fill={colors.muted}
+                                        fill={Theme.colors.text.secondary}
                                         textAnchor="end"
                                     >
                                         {value.toFixed(0)}
@@ -120,7 +111,7 @@ export default function WeightScreen() {
                         {/* 折线 */}
                         <Polyline
                             points={points}
-                            stroke={colors.primary}
+                            stroke={Theme.colors.primary}
                             strokeWidth={2}
                             fill="none"
                         />
@@ -131,12 +122,12 @@ export default function WeightScreen() {
                             const y = CHART_HEIGHT - PADDING - (d.weight - minWeight) * yScale;
                             return (
                                 <React.Fragment key={`point-${i}`}>
-                                    <Circle cx={x} cy={y} r={4} fill={colors.primary} />
+                                    <Circle cx={x} cy={y} r={4} fill={Theme.colors.primary} />
                                     <SvgText
                                         x={x}
                                         y={CHART_HEIGHT - 8}
                                         fontSize={10}
-                                        fill={colors.muted}
+                                        fill={Theme.colors.text.secondary}
                                         textAnchor="middle"
                                     >
                                         {d.date}
@@ -145,29 +136,28 @@ export default function WeightScreen() {
                             );
                         })}
                     </Svg>
-                </View>
-            </View>
+                </Card>
+            </Section>
 
             {/* 健康建议 */}
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>健康建议</Text>
-                <View style={styles.tipCard}>
-                    <Icon name="bulb" size={20} color={colors.green} />
+            <Section title="健康建议" containerStyle={styles.sectionPadding}>
+                <Card variant="flat" style={styles.tipCard} padding="md">
+                    <Icon name="bulb" size={20} color={Theme.colors.status.health} />
                     <Text style={styles.tipText}>
                         体重保持稳定，继续保持当前的饮食和运动习惯。建议每月测量一次体重。
                     </Text>
-                </View>
-            </View>
+                </Card>
+            </Section>
 
             {/* 添加记录按钮 */}
-            <View style={styles.section}>
+            <View style={styles.sectionPadding}>
                 <Pressable style={styles.addBtn}>
-                    <Icon name="add-circle" size={24} color={colors.white} />
+                    <Icon name="add-circle" size={24} color={Theme.colors.surface} />
                     <Text style={styles.addBtnText}>记录体重</Text>
                 </Pressable>
             </View>
 
-            <View style={{ height: 32 }} />
+            <View style={{ height: Theme.spacing.xl }} />
         </ScrollView>
     );
 }
@@ -175,21 +165,21 @@ export default function WeightScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.background,
+        backgroundColor: Theme.colors.background,
+    },
+    sectionPadding: {
+        paddingHorizontal: Theme.spacing.md,
     },
     currentCard: {
         flexDirection: "row",
-        backgroundColor: colors.white,
-        margin: 16,
-        borderRadius: 16,
-        padding: 20,
+        margin: Theme.spacing.md,
     },
     currentContent: {
         flex: 1,
     },
     currentLabel: {
-        color: colors.muted,
-        fontSize: 14,
+        ...Theme.typography.caption,
+        color: Theme.colors.text.secondary,
     },
     currentRow: {
         flexDirection: "row",
@@ -197,13 +187,12 @@ const styles = StyleSheet.create({
         marginTop: 4,
     },
     currentValue: {
-        color: colors.foreground,
+        ...Theme.typography.h1,
         fontSize: 42,
-        fontWeight: "bold",
     },
     currentUnit: {
-        color: colors.muted,
-        fontSize: 18,
+        ...Theme.typography.body,
+        color: Theme.colors.text.secondary,
         marginLeft: 4,
     },
     changeRow: {
@@ -213,36 +202,19 @@ const styles = StyleSheet.create({
         gap: 4,
     },
     changeText: {
-        fontSize: 14,
+        ...Theme.typography.caption,
     },
     currentIcon: {
         justifyContent: "center",
     },
-    section: {
-        paddingHorizontal: 16,
-        marginBottom: 16,
-    },
-    sectionTitle: {
-        color: colors.foreground,
-        fontSize: 17,
-        fontWeight: "bold",
-        marginBottom: 12,
-    },
-    chartCard: {
-        backgroundColor: colors.white,
-        borderRadius: 16,
-        padding: 12,
-    },
     tipCard: {
         flexDirection: "row",
-        backgroundColor: "#DCFCE7",
-        borderRadius: 12,
-        padding: 14,
+        backgroundColor: '#F0FDF4',
         gap: 10,
     },
     tipText: {
         flex: 1,
-        color: colors.foreground,
+        ...Theme.typography.body,
         fontSize: 14,
         lineHeight: 20,
     },
@@ -250,14 +222,14 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: colors.primary,
-        paddingVertical: 14,
-        borderRadius: 12,
+        backgroundColor: Theme.colors.primary,
+        paddingVertical: Theme.spacing.md,
+        borderRadius: Theme.radius.md,
         gap: 8,
     },
     addBtnText: {
-        color: colors.white,
+        ...Theme.typography.h3,
+        color: Theme.colors.surface,
         fontSize: 16,
-        fontWeight: "600",
     },
 });

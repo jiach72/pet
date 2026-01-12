@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { useRouter } from "expo-router";
 import Icon from "@/components/Icon";
 import { colors, borderRadius, shadows, spacing } from "@/constants/theme";
 
@@ -17,6 +18,7 @@ const gaugeConfig = {
         min: 37,
         max: 40,
         normal: { min: 38, max: 39.2 },
+        route: "/health/details/temperature",
     },
     respiratory: {
         icon: "pulse",
@@ -25,6 +27,7 @@ const gaugeConfig = {
         min: 10,
         max: 40,
         normal: { min: 15, max: 30 },
+        route: "/health/details/respiratory",
     },
     activity: {
         icon: "flash",
@@ -33,13 +36,15 @@ const gaugeConfig = {
         min: 0,
         max: 100,
         normal: { min: 30, max: 80 },
+        route: "/health/details/activity",
     },
 };
 
 /**
- * 体征仪表组件 - Claymorphism 风格 + SVG 图标
+ * 体征仪表组件 - Claymorphism 风格 + SVG 图标 (支持下钻)
  */
 export function VitalGauge({ type, value, unit }: VitalGaugeProps) {
+    const router = useRouter();
     const config = gaugeConfig[type];
     const percentage = Math.min(
         100,
@@ -48,9 +53,15 @@ export function VitalGauge({ type, value, unit }: VitalGaugeProps) {
     const isNormal = value >= config.normal.min && value <= config.normal.max;
 
     return (
-        <View style={styles.container}>
+        <Pressable
+            onPress={() => router.push(config.route as any)}
+            style={({ pressed }) => [
+                styles.container,
+                pressed && { opacity: 0.9, transform: [{ scale: 0.98 }] }
+            ]}
+        >
             <View style={[styles.iconBg, { backgroundColor: `${config.color}15` }]}>
-                <Icon name={config.icon} size={20} color={config.color} />
+                <Icon name={config.icon as any} size={20} color={config.color} />
             </View>
             <Text style={styles.label}>{config.label}</Text>
             <View style={styles.valueRow}>
@@ -70,7 +81,7 @@ export function VitalGauge({ type, value, unit }: VitalGaugeProps) {
                     ]}
                 />
             </View>
-        </View>
+        </Pressable>
     );
 }
 
