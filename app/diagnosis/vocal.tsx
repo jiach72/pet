@@ -1,14 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { View, Text, ScrollView, Pressable, StyleSheet, Animated } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 import { colors, borderRadius, shadows, spacing } from "@/constants/theme";
 import { analyzeVocal, vocalTypes } from "@/services/diagnosisService";
 
 type RecordingState = "idle" | "recording" | "analyzing" | "done";
 
 /**
- * 声音听诊页面 (Task 2.3)
- * F-02: Vocal Health
+ * 声音听诊页面 - 使用 react-icons SVG
  */
 export default function VocalAnalysisScreen() {
     const [state, setState] = useState<RecordingState>("idle");
@@ -23,7 +22,6 @@ export default function VocalAnalysisScreen() {
 
     useEffect(() => {
         if (state === "recording") {
-            // 脉冲动画
             Animated.loop(
                 Animated.sequence([
                     Animated.timing(pulseAnim, {
@@ -39,7 +37,6 @@ export default function VocalAnalysisScreen() {
                 ])
             ).start();
 
-            // 计时器
             timerRef.current = setInterval(() => {
                 setDuration((d) => d + 1);
             }, 1000);
@@ -66,7 +63,6 @@ export default function VocalAnalysisScreen() {
     const handleStopRecording = async () => {
         setState("analyzing");
 
-        // 模拟分析
         const analysisResult = await analyzeVocal("mock-audio-uri");
         if (analysisResult.success && analysisResult.result) {
             setResult(analysisResult.result);
@@ -92,7 +88,7 @@ export default function VocalAnalysisScreen() {
         <ScrollView style={styles.container}>
             {/* 提示信息 */}
             <View style={styles.tipCard}>
-                <Ionicons name="information-circle" size={20} color={colors.info} />
+                <Icon name="information-circle" size={20} color={colors.info} />
                 <Text style={styles.tipText}>
                     录制宠物的声音（咳嗽、吠叫等），AI 将分析可能的健康问题
                 </Text>
@@ -114,7 +110,7 @@ export default function VocalAnalysisScreen() {
                                 state === "recording" && styles.recordBtnActive,
                             ]}
                         >
-                            <Ionicons
+                            <Icon
                                 name={state === "recording" ? "stop" : "mic"}
                                 size={48}
                                 color={colors.white}
@@ -134,7 +130,7 @@ export default function VocalAnalysisScreen() {
 
                     {state === "analyzing" && (
                         <View style={styles.analyzingRow}>
-                            <Ionicons name="analytics" size={20} color={colors.primary} />
+                            <Icon name="analytics" size={20} color={colors.primary} />
                             <Text style={styles.analyzingText}>AI 正在分析...</Text>
                         </View>
                     )}
@@ -145,18 +141,13 @@ export default function VocalAnalysisScreen() {
             {state === "done" && result && currentType && (
                 <View style={styles.resultSection}>
                     <View style={styles.resultCard}>
-                        {/* 结果图标 */}
                         <View
                             style={[
                                 styles.resultIcon,
                                 { backgroundColor: `${currentType.color}15` },
                             ]}
                         >
-                            <Ionicons
-                                name={currentType.icon as any}
-                                size={40}
-                                color={currentType.color}
-                            />
+                            <Icon name={currentType.icon} size={40} color={currentType.color} />
                         </View>
 
                         <Text style={[styles.resultLabel, { color: currentType.color }]}>
@@ -164,13 +155,11 @@ export default function VocalAnalysisScreen() {
                         </Text>
                         <Text style={styles.resultDesc}>{currentType.description}</Text>
 
-                        {/* 建议 */}
                         <View style={styles.adviceSection}>
-                            <Ionicons name="bulb" size={18} color={colors.secondary} />
+                            <Icon name="bulb" size={18} color={colors.secondary} />
                             <Text style={styles.adviceText}>{currentType.advice}</Text>
                         </View>
 
-                        {/* 置信度 */}
                         <View style={styles.confidenceRow}>
                             <Text style={styles.confidenceLabel}>置信度</Text>
                             <Text style={styles.confidenceValue}>
@@ -179,20 +168,18 @@ export default function VocalAnalysisScreen() {
                         </View>
                     </View>
 
-                    {/* 免责声明 */}
                     <View style={styles.disclaimer}>
-                        <Ionicons name="warning" size={16} color={colors.warning} />
+                        <Icon name="warning" size={16} color={colors.warning} />
                         <Text style={styles.disclaimerText}>
                             仅供参考，如有健康问题请咨询专业兽医
                         </Text>
                     </View>
 
-                    {/* 重新录音 */}
                     <Pressable
                         onPress={handleReset}
                         style={({ pressed }) => [styles.resetBtn, pressed && styles.btnPressed]}
                     >
-                        <Ionicons name="refresh" size={20} color={colors.primary} />
+                        <Icon name="refresh" size={20} color={colors.primary} />
                         <Text style={styles.resetBtnText}>重新录音</Text>
                     </Pressable>
                 </View>

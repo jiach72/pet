@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 
 /**
  * Tab 导航布局
@@ -35,7 +35,7 @@ export default function TabsLayout() {
                 options={{
                     title: "守护",
                     tabBarIcon: ({ color, size }) => (
-                        <Ionicons name="shield-checkmark" size={size} color={color} />
+                        <Icon name="shield-checkmark" size={size} color={color} />
                     ),
                 }}
             />
@@ -44,7 +44,7 @@ export default function TabsLayout() {
                 options={{
                     title: "社交",
                     tabBarIcon: ({ color, size }) => (
-                        <Ionicons name="people" size={size} color={color} />
+                        <Icon name="people" size={size} color={color} />
                     ),
                 }}
             />
@@ -53,7 +53,7 @@ export default function TabsLayout() {
                 options={{
                     title: "地图",
                     tabBarIcon: ({ color, size }) => (
-                        <Ionicons name="map" size={size} color={color} />
+                        <Icon name="map" size={size} color={color} />
                     ),
                 }}
             />
@@ -62,7 +62,7 @@ export default function TabsLayout() {
                 options={{
                     title: "我的",
                     tabBarIcon: ({ color, size }) => (
-                        <Ionicons name="person" size={size} color={color} />
+                        <Icon name="person" size={size} color={color} />
                     ),
                 }}
             />

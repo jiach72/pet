@@ -1,13 +1,7 @@
-import React, { useMemo } from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
-import Svg, { Path, Line, Defs, LinearGradient, Stop } from "react-native-svg";
-import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import Icon from "@/components/Icon";
 import { colors, borderRadius, shadows, spacing } from "@/constants/theme";
-
-const { width: screenWidth } = Dimensions.get("window");
-const CHART_WIDTH = screenWidth - 64;
-const CHART_HEIGHT = 140;
-const PADDING = 10;
 
 interface HeartRateChartProps {
     points: number[];
@@ -15,98 +9,63 @@ interface HeartRateChartProps {
 }
 
 /**
- * 心率曲线组件 (Soft UI 风格)
- * - 移除 Emoji，使用 Ionicons
- * - Soft shadow + 渐变背景
- * - 圆角优化
+ * 心率曲线图 - Soft UI 风格 + SVG 图标
  */
 export function HeartRateChart({ points, heartRate }: HeartRateChartProps) {
-    const pathData = useMemo(() => {
-        if (points.length === 0) return "";
+    // 简化的 ECG 曲线渲染
+    const renderECG = () => {
+        const width = 280;
+        const height = 80;
+        const step = width / (points.length - 1);
 
-        const xStep = (CHART_WIDTH - PADDING * 2) / (points.length - 1);
-        const yCenter = CHART_HEIGHT / 2;
-        const yScale = (CHART_HEIGHT - PADDING * 2) / 2;
+        let path = "";
+        points.forEach((point, index) => {
+            const x = index * step;
+            const y = height / 2 - (point - 0.5) * height * 0.8;
+            if (index === 0) {
+                path += `M ${x} ${y}`;
+            } else {
+                path += ` L ${x} ${y}`;
+            }
+        });
 
-        let d = `M ${PADDING} ${yCenter - points[0] * yScale}`;
-
-        for (let i = 1; i < points.length; i++) {
-            const x = PADDING + i * xStep;
-            const y = yCenter - points[i] * yScale;
-            d += ` L ${x} ${y}`;
-        }
-
-        return d;
-    }, [points]);
-
-    // 心率状态判断
-    const getHeartRateStatus = () => {
-        if (heartRate > 110) return { color: colors.warning, label: "偏高" };
-        if (heartRate < 60) return { color: colors.info, label: "偏低" };
-        return { color: colors.secondary, label: "正常" };
+        return (
+            <View style={styles.chartContainer}>
+                <svg width={width} height={height} style={{ overflow: "visible" }}>
+                    <defs>
+                        <linearGradient id="ecgGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor={colors.error} stopOpacity="0.3" />
+                            <stop offset="100%" stopColor={colors.error} stopOpacity="1" />
+                        </linearGradient>
+                    </defs>
+                    <path
+                        d={path}
+                        fill="none"
+                        stroke="url(#ecgGradient)"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    />
+                </svg>
+            </View>
+        );
     };
-
-    const status = getHeartRateStatus();
 
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <View style={styles.labelRow}>
-                    <View style={styles.iconContainer}>
-                        <Ionicons name="heart" size={20} color={colors.error} />
+                <View style={styles.titleRow}>
+                    <View style={styles.iconBg}>
+                        <Icon name="heart" size={18} color={colors.error} />
                     </View>
-                    <View>
-                        <Text style={styles.label}>心率监测</Text>
-                        <Text style={styles.sublabel}>实时 ECG</Text>
-                    </View>
+                    <Text style={styles.title}>心率监测</Text>
                 </View>
                 <View style={styles.valueRow}>
                     <Text style={styles.value}>{heartRate}</Text>
-                    <View>
-                        <Text style={styles.unit}>bpm</Text>
-                        <View style={[styles.statusBadge, { backgroundColor: `${status.color}15` }]}>
-                            <Text style={[styles.statusText, { color: status.color }]}>
-                                {status.label}
-                            </Text>
-                        </View>
-                    </View>
+                    <Text style={styles.unit}>BPM</Text>
                 </View>
             </View>
-
-            <View style={styles.chartContainer}>
-                <Svg width={CHART_WIDTH} height={CHART_HEIGHT}>
-                    <Defs>
-                        <LinearGradient id="ecgGradient" x1="0" y1="0" x2="1" y2="0">
-                            <Stop offset="0" stopColor={colors.secondary} stopOpacity="0.8" />
-                            <Stop offset="1" stopColor={colors.secondaryLight} stopOpacity="1" />
-                        </LinearGradient>
-                    </Defs>
-
-                    {/* 网格线 */}
-                    {[0, 1, 2, 3, 4].map((i) => (
-                        <Line
-                            key={`h-${i}`}
-                            x1={PADDING}
-                            y1={PADDING + (i * (CHART_HEIGHT - PADDING * 2)) / 4}
-                            x2={CHART_WIDTH - PADDING}
-                            y2={PADDING + (i * (CHART_HEIGHT - PADDING * 2)) / 4}
-                            stroke={colors.border}
-                            strokeWidth={0.5}
-                            strokeDasharray="4,4"
-                        />
-                    ))}
-
-                    {/* ECG 曲线 - 渐变色 */}
-                    <Path
-                        d={pathData}
-                        stroke="url(#ecgGradient)"
-                        strokeWidth={2.5}
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                </Svg>
-            </View>
+            {renderECG()}
         </View>
     );
 }
@@ -115,67 +74,50 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.white,
         borderRadius: borderRadius.xl,
-        padding: spacing.lg,
+        padding: spacing.xl,
         ...shadows.card,
     },
     header: {
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: "flex-start",
-        marginBottom: spacing.md,
+        alignItems: "center",
+        marginBottom: spacing.lg,
     },
-    labelRow: {
+    titleRow: {
         flexDirection: "row",
         alignItems: "center",
         gap: spacing.sm,
     },
-    iconContainer: {
-        width: 40,
-        height: 40,
-        borderRadius: borderRadius.md,
+    iconBg: {
+        width: 32,
+        height: 32,
+        borderRadius: borderRadius.sm,
         backgroundColor: `${colors.error}15`,
         alignItems: "center",
         justifyContent: "center",
     },
-    label: {
+    title: {
         color: colors.foreground,
         fontSize: 16,
         fontWeight: "600",
     },
-    sublabel: {
-        color: colors.muted,
-        fontSize: 12,
-        marginTop: 2,
-    },
     valueRow: {
         flexDirection: "row",
-        alignItems: "flex-start",
-        gap: spacing.xs,
+        alignItems: "baseline",
     },
     value: {
-        color: colors.foreground,
-        fontSize: 36,
+        color: colors.error,
+        fontSize: 28,
         fontWeight: "bold",
-        lineHeight: 40,
     },
     unit: {
         color: colors.muted,
         fontSize: 14,
-        marginTop: 4,
-    },
-    statusBadge: {
-        paddingVertical: 2,
-        paddingHorizontal: 8,
-        borderRadius: borderRadius.sm,
-        marginTop: 4,
-    },
-    statusText: {
-        fontSize: 12,
-        fontWeight: "600",
+        marginLeft: spacing.xs,
     },
     chartContainer: {
-        backgroundColor: colors.backgroundSecondary,
-        borderRadius: borderRadius.lg,
-        overflow: "hidden",
+        alignItems: "center",
+        justifyContent: "center",
+        height: 80,
     },
 });

@@ -8,7 +8,7 @@ import {
     RefreshControl,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 import { HeartRateChart } from "@/components/health/HeartRateChart";
 import { VitalGauge } from "@/components/health/VitalGauge";
 import { AlertBanner } from "@/components/health/AlertBanner";
@@ -19,7 +19,7 @@ import { colors, borderRadius, shadows, spacing } from "@/constants/theme";
 
 /**
  * 守护页 - 实时体征监测 (Soft UI 风格)
- * - 移除 Emoji，使用 Ionicons
+ * - 使用 react-icons SVG 图标
  * - Soft shadow + 大圆角
  * - 按钮微交互
  */
@@ -68,7 +68,7 @@ export default function GuardScreen() {
                         onPress={() => router.push("/health/alerts")}
                         style={({ pressed }) => [styles.alertBtn, pressed && styles.btnPressed]}
                     >
-                        <Ionicons name="notifications" size={22} color={colors.foreground} />
+                        <Icon name="notifications" size={22} color={colors.foreground} />
                     </Pressable>
                 </View>
 
@@ -89,7 +89,7 @@ export default function GuardScreen() {
                         <View style={styles.scoreContent}>
                             <View style={styles.scoreLabelRow}>
                                 <View style={styles.scoreIconBg}>
-                                    <Ionicons name="shield-checkmark" size={18} color={colors.secondary} />
+                                    <Icon name="shield-checkmark" size={18} color={colors.secondary} />
                                 </View>
                                 <Text style={styles.scoreLabel}>健康评分</Text>
                             </View>
@@ -100,7 +100,7 @@ export default function GuardScreen() {
                                 <Text style={styles.scoreMax}>/100</Text>
                             </View>
                             <View style={styles.statusBadge}>
-                                <Ionicons name="checkmark-circle" size={14} color={colors.secondary} />
+                                <Icon name="checkmark-circle" size={14} color={colors.secondary} />
                                 <Text style={styles.statusText}>状态良好</Text>
                             </View>
                         </View>
@@ -138,10 +138,10 @@ export default function GuardScreen() {
                                 style={({ pressed }) => [styles.quickLink, pressed && styles.btnPressed]}
                             >
                                 <View style={[styles.quickLinkIcon, { backgroundColor: `${item.color}15` }]}>
-                                    <Ionicons name={item.icon as any} size={22} color={item.color} />
+                                    <Icon name={item.icon} size={22} color={item.color} />
                                 </View>
                                 <Text style={styles.quickLinkLabel}>{item.label}</Text>
-                                <Ionicons name="chevron-forward" size={16} color={colors.muted} />
+                                <Icon name="chevron-forward" size={16} color={colors.muted} />
                             </Pressable>
                         ))}
                     </View>
@@ -154,10 +154,10 @@ export default function GuardScreen() {
                         style={({ pressed }) => [styles.lostModeBtn, pressed && styles.lostModeBtnPressed]}
                     >
                         <View style={styles.lostModeIcon}>
-                            <Ionicons name="radio" size={22} color={colors.white} />
+                            <Icon name="radio" size={22} color={colors.white} />
                         </View>
                         <Text style={styles.lostModeBtnText}>启动丢失模式</Text>
-                        <Ionicons name="chevron-forward" size={20} color="rgba(255,255,255,0.7)" />
+                        <Icon name="chevron-forward" size={20} color="rgba(255,255,255,0.7)" />
                     </Pressable>
                 </View>
             </ScrollView>

@@ -1,7 +1,6 @@
-import React from "react";
-import { View, Text, Pressable, StyleSheet, Modal } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { Linking } from "react-native";
+import React, { useRef, useEffect } from "react";
+import { View, Text, Pressable, StyleSheet, Modal, Animated } from "react-native";
+import Icon from "@/components/Icon";
 import { colors, borderRadius, shadows, spacing } from "@/constants/theme";
 
 interface AlertModalProps {
@@ -12,27 +11,43 @@ interface AlertModalProps {
 }
 
 /**
- * 紧急预警弹窗 (Soft UI 风格)
- * - 大圆角
- * - Soft shadow
- * - 动画反馈
+ * 紧急预警弹窗 - Soft UI 风格 + 脉冲动画
  */
 export function AlertModal({ visible, title, message, onClose }: AlertModalProps) {
-    const handleCallVet = () => {
-        Linking.openURL("tel:400-888-8888");
-    };
+    const pulseAnim = useRef(new Animated.Value(1)).current;
+
+    useEffect(() => {
+        if (visible) {
+            Animated.loop(
+                Animated.sequence([
+                    Animated.timing(pulseAnim, {
+                        toValue: 1.1,
+                        duration: 800,
+                        useNativeDriver: true,
+                    }),
+                    Animated.timing(pulseAnim, {
+                        toValue: 1,
+                        duration: 800,
+                        useNativeDriver: true,
+                    }),
+                ])
+            ).start();
+        } else {
+            pulseAnim.stopAnimation();
+            pulseAnim.setValue(1);
+        }
+    }, [visible]);
 
     return (
-        <Modal visible={visible} animationType="fade" transparent>
+        <Modal visible={visible} transparent animationType="fade">
             <View style={styles.overlay}>
-                <View style={styles.modal}>
-                    {/* 警告图标 - 动画脉冲效果 */}
-                    <View style={styles.iconContainer}>
-                        <View style={styles.iconPulse} />
-                        <View style={styles.iconBg}>
-                            <Ionicons name="alert-circle" size={40} color={colors.error} />
-                        </View>
-                    </View>
+                <View style={styles.container}>
+                    {/* 脉冲图标 */}
+                    <Animated.View
+                        style={[styles.iconContainer, { transform: [{ scale: pulseAnim }] }]}
+                    >
+                        <Icon name="warning" size={40} color={colors.error} />
+                    </Animated.View>
 
                     <Text style={styles.title}>{title}</Text>
                     <Text style={styles.message}>{message}</Text>
@@ -40,25 +55,18 @@ export function AlertModal({ visible, title, message, onClose }: AlertModalProps
                     {/* 操作按钮 */}
                     <View style={styles.actions}>
                         <Pressable
-                            onPress={handleCallVet}
-                            style={({ pressed }) => [
-                                styles.btn,
-                                styles.btnPrimary,
-                                pressed && styles.btnPressed,
-                            ]}
+                            onPress={onClose}
+                            style={({ pressed }) => [styles.closeBtn, pressed && styles.btnPressed]}
                         >
-                            <Ionicons name="call" size={20} color={colors.white} />
-                            <Text style={styles.btnPrimaryText}>联系兽医</Text>
+                            <Icon name="close" size={18} color={colors.muted} />
+                            <Text style={styles.closeBtnText}>稍后处理</Text>
                         </Pressable>
                         <Pressable
                             onPress={onClose}
-                            style={({ pressed }) => [
-                                styles.btn,
-                                styles.btnSecondary,
-                                pressed && styles.btnPressed,
-                            ]}
+                            style={({ pressed }) => [styles.actionBtn, pressed && styles.btnPressed]}
                         >
-                            <Text style={styles.btnSecondaryText}>我知道了</Text>
+                            <Icon name="call" size={18} color={colors.white} />
+                            <Text style={styles.actionBtnText}>联系兽医</Text>
                         </Pressable>
                     </View>
                 </View>
@@ -70,87 +78,81 @@ export function AlertModal({ visible, title, message, onClose }: AlertModalProps
 const styles = StyleSheet.create({
     overlay: {
         flex: 1,
-        backgroundColor: "rgba(0,0,0,0.4)",
+        backgroundColor: "rgba(0,0,0,0.5)",
         alignItems: "center",
         justifyContent: "center",
-        padding: spacing.xxl,
+        padding: spacing.xl,
     },
-    modal: {
+    container: {
         backgroundColor: colors.white,
         borderRadius: borderRadius.xxl,
         padding: spacing.xxl,
+        alignItems: "center",
         width: "100%",
         maxWidth: 340,
-        alignItems: "center",
-        ...shadows.floating,
+        ...shadows.modal,
     },
     iconContainer: {
-        position: "relative",
-        width: 88,
-        height: 88,
+        width: 80,
+        height: 80,
+        borderRadius: 40,
+        backgroundColor: `${colors.error}15`,
         alignItems: "center",
         justifyContent: "center",
         marginBottom: spacing.lg,
     },
-    iconPulse: {
-        position: "absolute",
-        width: 88,
-        height: 88,
-        borderRadius: 44,
-        backgroundColor: `${colors.error}20`,
-    },
-    iconBg: {
-        width: 72,
-        height: 72,
-        borderRadius: 36,
-        backgroundColor: `${colors.error}15`,
-        alignItems: "center",
-        justifyContent: "center",
-    },
     title: {
-        color: colors.error,
-        fontSize: 22,
+        color: colors.foreground,
+        fontSize: 20,
         fontWeight: "bold",
         marginBottom: spacing.sm,
     },
     message: {
-        color: colors.foreground,
-        fontSize: 16,
+        color: colors.muted,
+        fontSize: 15,
         textAlign: "center",
-        lineHeight: 24,
-        marginBottom: spacing.xxl,
+        lineHeight: 22,
+        marginBottom: spacing.xl,
     },
     actions: {
-        width: "100%",
+        flexDirection: "row",
         gap: spacing.md,
+        width: "100%",
     },
-    btn: {
+    closeBtn: {
+        flex: 1,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        paddingVertical: spacing.md + 2,
+        paddingVertical: spacing.md,
         borderRadius: borderRadius.lg,
-        gap: spacing.sm,
+        borderWidth: 1,
+        borderColor: colors.border,
+        gap: spacing.xs,
     },
-    btnPrimary: {
+    closeBtnText: {
+        color: colors.muted,
+        fontSize: 15,
+        fontWeight: "600",
+    },
+    actionBtn: {
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
         backgroundColor: colors.error,
+        paddingVertical: spacing.md,
+        borderRadius: borderRadius.lg,
+        gap: spacing.xs,
         ...shadows.button,
     },
-    btnSecondary: {
-        backgroundColor: colors.backgroundSecondary,
+    actionBtnText: {
+        color: colors.white,
+        fontSize: 15,
+        fontWeight: "600",
     },
     btnPressed: {
         opacity: 0.9,
         transform: [{ scale: 0.98 }],
-    },
-    btnPrimaryText: {
-        color: colors.white,
-        fontSize: 16,
-        fontWeight: "600",
-    },
-    btnSecondaryText: {
-        color: colors.muted,
-        fontSize: 16,
-        fontWeight: "500",
     },
 });

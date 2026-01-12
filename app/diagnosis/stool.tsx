@@ -1,64 +1,26 @@
 import React, { useState } from "react";
-import { View, Text, ScrollView, Pressable, StyleSheet, Image, Alert } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import * as ImagePicker from "expo-image-picker";
+import { View, Text, ScrollView, Pressable, StyleSheet, Alert } from "react-native";
+import Icon from "@/components/Icon";
 import { colors, borderRadius, shadows, spacing } from "@/constants/theme";
 import { analyzeStool, bristolTypes } from "@/services/diagnosisService";
 
 type AnalysisState = "idle" | "uploading" | "analyzing" | "done";
 
 /**
- * 粪便分析页面 (Task 2.2)
- * F-02: Stool Scope
+ * 粪便分析页面 - 使用 react-icons SVG
  */
 export default function StoolAnalysisScreen() {
-    const [imageUri, setImageUri] = useState<string | null>(null);
     const [state, setState] = useState<AnalysisState>("idle");
     const [result, setResult] = useState<{
         type: keyof typeof bristolTypes;
         confidence: number;
     } | null>(null);
 
-    const handlePickImage = async () => {
-        const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (!permission.granted) {
-            Alert.alert("需要权限", "请允许访问相册");
-            return;
-        }
-
-        const result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            quality: 0.8,
-        });
-
-        if (!result.canceled && result.assets[0]) {
-            setImageUri(result.assets[0].uri);
-            handleAnalyze(result.assets[0].uri);
-        }
-    };
-
-    const handleTakePhoto = async () => {
-        const permission = await ImagePicker.requestCameraPermissionsAsync();
-        if (!permission.granted) {
-            Alert.alert("需要权限", "请允许访问相机");
-            return;
-        }
-
-        const result = await ImagePicker.launchCameraAsync({
-            quality: 0.8,
-        });
-
-        if (!result.canceled && result.assets[0]) {
-            setImageUri(result.assets[0].uri);
-            handleAnalyze(result.assets[0].uri);
-        }
-    };
-
-    const handleAnalyze = async (uri: string) => {
+    const handleMockAnalyze = async () => {
         setState("uploading");
         setTimeout(() => setState("analyzing"), 500);
 
-        const analysisResult = await analyzeStool(uri);
+        const analysisResult = await analyzeStool("mock-uri");
         if (analysisResult.success && analysisResult.result) {
             setResult(analysisResult.result);
             setState("done");
@@ -69,7 +31,6 @@ export default function StoolAnalysisScreen() {
     };
 
     const handleReset = () => {
-        setImageUri(null);
         setResult(null);
         setState("idle");
     };
@@ -80,31 +41,31 @@ export default function StoolAnalysisScreen() {
         <ScrollView style={styles.container}>
             {/* 提示信息 */}
             <View style={styles.tipCard}>
-                <Ionicons name="information-circle" size={20} color={colors.info} />
+                <Icon name="information-circle" size={20} color={colors.info} />
                 <Text style={styles.tipText}>
                     拍摄或上传宠物粪便照片，AI 将根据布里斯托分类法进行分析
                 </Text>
             </View>
 
             {/* 上传区域 */}
-            {state === "idle" && !imageUri && (
+            {state === "idle" && !result && (
                 <View style={styles.uploadSection}>
                     <Pressable
-                        onPress={handleTakePhoto}
+                        onPress={handleMockAnalyze}
                         style={({ pressed }) => [styles.uploadBtn, pressed && styles.btnPressed]}
                     >
                         <View style={styles.uploadIcon}>
-                            <Ionicons name="camera" size={32} color={colors.primary} />
+                            <Icon name="camera" size={32} color={colors.primary} />
                         </View>
                         <Text style={styles.uploadLabel}>拍照分析</Text>
                     </Pressable>
 
                     <Pressable
-                        onPress={handlePickImage}
+                        onPress={handleMockAnalyze}
                         style={({ pressed }) => [styles.uploadBtn, pressed && styles.btnPressed]}
                     >
                         <View style={styles.uploadIcon}>
-                            <Ionicons name="images" size={32} color={colors.secondary} />
+                            <Icon name="images" size={32} color={colors.secondary} />
                         </View>
                         <Text style={styles.uploadLabel}>从相册选择</Text>
                     </Pressable>
@@ -115,7 +76,7 @@ export default function StoolAnalysisScreen() {
             {(state === "uploading" || state === "analyzing") && (
                 <View style={styles.loadingSection}>
                     <View style={styles.loadingIcon}>
-                        <Ionicons
+                        <Icon
                             name={state === "uploading" ? "cloud-upload" : "analytics"}
                             size={48}
                             color={colors.primary}
@@ -131,14 +92,10 @@ export default function StoolAnalysisScreen() {
             {/* 分析结果 */}
             {state === "done" && result && currentType && (
                 <View style={styles.resultSection}>
-                    {/* 结果卡片 */}
                     <View style={styles.resultCard}>
                         <View style={styles.resultHeader}>
                             <View
-                                style={[
-                                    styles.typeIndicator,
-                                    { backgroundColor: currentType.color },
-                                ]}
+                                style={[styles.typeIndicator, { backgroundColor: currentType.color }]}
                             />
                             <View>
                                 <Text style={styles.typeName}>{currentType.name}</Text>
@@ -178,7 +135,7 @@ export default function StoolAnalysisScreen() {
                         <Text style={styles.description}>{currentType.description}</Text>
 
                         <View style={styles.adviceSection}>
-                            <Ionicons name="bulb" size={18} color={colors.secondary} />
+                            <Icon name="bulb" size={18} color={colors.secondary} />
                             <Text style={styles.adviceText}>{currentType.advice}</Text>
                         </View>
 
@@ -192,7 +149,7 @@ export default function StoolAnalysisScreen() {
 
                     {/* 免责声明 */}
                     <View style={styles.disclaimer}>
-                        <Ionicons name="warning" size={16} color={colors.warning} />
+                        <Icon name="warning" size={16} color={colors.warning} />
                         <Text style={styles.disclaimerText}>
                             仅供参考，如有健康问题请咨询专业兽医
                         </Text>
@@ -203,7 +160,7 @@ export default function StoolAnalysisScreen() {
                         onPress={handleReset}
                         style={({ pressed }) => [styles.resetBtn, pressed && styles.btnPressed]}
                     >
-                        <Ionicons name="refresh" size={20} color={colors.primary} />
+                        <Icon name="refresh" size={20} color={colors.primary} />
                         <Text style={styles.resetBtnText}>重新分析</Text>
                     </Pressable>
                 </View>
