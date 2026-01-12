@@ -24,7 +24,7 @@ const colors = {
 };
 
 /**
- * 社交�?- 整合情感日记 + 绿盾认证 + 活力挑战�?
+ * 社交页 - 整合情感日记 + 绿盾认证 + 活力挑战赛
  * Task 5.1, 5.2, 5.3
  */
 export default function SocialScreen() {
@@ -51,10 +51,10 @@ export default function SocialScreen() {
         >
             {/* 顶部标题 */}
             <View style={styles.header}>
-                <Text style={styles.headerTitle}>社交�?/Text>
+                <Text style={styles.headerTitle}>社交圈</Text>
             </View>
 
-            {/* 绿盾认证状�?*/}
+            {/* 绿盾认证状态 */}
             <View style={styles.section}>
                 <GreenShieldBadge info={mockGreenShield} />
             </View>
@@ -68,7 +68,7 @@ export default function SocialScreen() {
                         style={styles.viewAllBtn}
                     >
                         <Text style={styles.viewAllText}>查看全部</Text>
-                        <Icon name="chevron-forward" size={16} color={colors.primary} />
+                        <Ionicons name="chevron-forward" size={16} color={colors.primary} />
                     </Pressable>
                 </View>
                 {todayDiary && (
@@ -79,9 +79,9 @@ export default function SocialScreen() {
                 )}
             </View>
 
-            {/* 活力挑战�?*/}
+            {/* 活力挑战赛 */}
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>活力挑战�?/Text>
+                <Text style={styles.sectionTitle}>活力挑战赛</Text>
                 <LeaderboardCard
                     data={mockLeaderboard}
                     showToggle={true}
@@ -99,7 +99,7 @@ export default function SocialScreen() {
                         pressed && styles.pkButtonPressed,
                     ]}
                 >
-                    <Icon name="flash" size={24} color="white" />
+                    <Ionicons name="flash" size={24} color="white" />
                     <Text style={styles.pkButtonText}>发起 1V1 挑战</Text>
                 </Pressable>
             </View>

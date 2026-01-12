@@ -30,13 +30,13 @@ const mockFriends = [
 
 // 挑战时长选项
 const durationOptions = [
-    { days: 3, label: "3 �? },
-    { days: 7, label: "1 �? },
-    { days: 14, label: "2 �? },
+    { days: 3, label: "3 天" },
+    { days: 7, label: "1 周" },
+    { days: 14, label: "2 周" },
 ];
 
 /**
- * 1V1 挑战�?(Task 4.2, 4.3)
+ * 1V1 挑战页 (Task 4.2, 4.3)
  */
 export default function ChallengeScreen() {
     const router = useRouter();
@@ -87,7 +87,7 @@ export default function ChallengeScreen() {
                                 <Text style={styles.friendOwnerName}>{friend.name}</Text>
                             </View>
                             {selectedFriend === friend.id && (
-                                <Icon
+                                <Ionicons
                                     name="checkmark-circle"
                                     size={24}
                                     color={colors.primary}
@@ -129,15 +129,15 @@ export default function ChallengeScreen() {
                 <Text style={styles.sectionTitle}>挑战规则</Text>
                 <View style={styles.rulesCard}>
                     <View style={styles.ruleItem}>
-                        <Icon name="footsteps" size={20} color={colors.primary} />
+                        <Ionicons name="footsteps" size={20} color={colors.primary} />
                         <Text style={styles.ruleText}>比拼期间累计步数</Text>
                     </View>
                     <View style={styles.ruleItem}>
-                        <Icon name="trophy" size={20} color={colors.primary} />
-                        <Text style={styles.ruleText}>步数更多者获�?/Text>
+                        <Ionicons name="trophy" size={20} color={colors.primary} />
+                        <Text style={styles.ruleText}>步数更多者获胜</Text>
                     </View>
                     <View style={styles.ruleItem}>
-                        <Icon name="megaphone" size={20} color={colors.primary} />
+                        <Ionicons name="megaphone" size={20} color={colors.primary} />
                         <Text style={styles.ruleText}>输家自动发布认输动态（可关闭）</Text>
                     </View>
                 </View>
@@ -154,9 +154,9 @@ export default function ChallengeScreen() {
                         (!selectedFriend || isSubmitting) && styles.submitBtnDisabled,
                     ]}
                 >
-                    <Icon name="flash" size={24} color={colors.white} />
+                    <Ionicons name="flash" size={24} color={colors.white} />
                     <Text style={styles.submitBtnText}>
-                        {isSubmitting ? "发起�?.." : "发起挑战"}
+                        {isSubmitting ? "发起中..." : "发起挑战"}
                     </Text>
                 </Pressable>
             </View>

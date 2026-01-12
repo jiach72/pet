@@ -23,8 +23,8 @@ const mockRecords: MedicalRecord[] = [
         date: "2026-01-08",
         type: "checkup",
         hospital: "宠爱动物医院",
-        doctor: "张医�?,
-        diagnosis: "常规体检，各项指标正�?,
+        doctor: "张医生",
+        diagnosis: "常规体检，各项指标正常",
         cost: 280,
     },
     {
@@ -33,7 +33,7 @@ const mockRecords: MedicalRecord[] = [
         date: "2025-12-15",
         type: "treatment",
         hospital: "宠爱动物医院",
-        diagnosis: "轻微肠胃不�?,
+        diagnosis: "轻微肠胃不适",
         treatment: "口服益生菌，调整饮食",
         cost: 350,
     },
@@ -43,7 +43,7 @@ const mockRecords: MedicalRecord[] = [
         date: "2025-10-20",
         type: "checkup",
         hospital: "萌宠诊所",
-        diagnosis: "年度体检，健康状况良�?,
+        diagnosis: "年度体检，健康状况良好",
         cost: 450,
     },
 ];
@@ -56,7 +56,7 @@ const typeConfig = {
 };
 
 /**
- * 就医记录�?(Task 4.3)
+ * 就医记录页 (Task 4.3)
  */
 export default function RecordsScreen() {
     const renderRecord = ({ item }: { item: MedicalRecord }) => {
@@ -64,7 +64,7 @@ export default function RecordsScreen() {
         return (
             <View style={styles.recordCard}>
                 <View style={[styles.typeIcon, { backgroundColor: `${config.color}15` }]}>
-                    <Icon name={config.icon as any} size={20} color={config.color} />
+                    <Ionicons name={config.icon as any} size={20} color={config.color} />
                 </View>
                 <View style={styles.recordContent}>
                     <View style={styles.recordHeader}>
@@ -92,7 +92,7 @@ export default function RecordsScreen() {
         <View style={styles.container}>
             {/* 添加按钮 */}
             <Pressable style={styles.addBtn}>
-                <Icon name="add-circle" size={24} color={colors.white} />
+                <Ionicons name="add-circle" size={24} color={colors.white} />
                 <Text style={styles.addBtnText}>添加就医记录</Text>
             </Pressable>
 

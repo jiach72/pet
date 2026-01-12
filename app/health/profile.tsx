@@ -14,12 +14,12 @@ const colors = {
 };
 
 /**
- * 宠物档案�?(Task 4.2)
+ * 宠物档案页 (Task 4.2)
  */
 export default function ProfileScreen() {
     return (
         <ScrollView style={styles.container}>
-            {/* 宠物头像�?*/}
+            {/* 宠物头像卡 */}
             <View style={styles.profileCard}>
                 <View style={styles.avatar}>
                     <Text style={styles.avatarEmoji}>🐕</Text>
@@ -40,24 +40,24 @@ export default function ProfileScreen() {
                     </View>
                     <View style={styles.infoDivider} />
                     <View style={styles.infoItem}>
-                        <Text style={styles.infoValue}>�?/Text>
+                        <Text style={styles.infoValue}>♂</Text>
                         <Text style={styles.infoLabel}>性别</Text>
                     </View>
                 </View>
             </View>
 
-            {/* 健康状�?*/}
+            {/* 健康状态 */}
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>健康状�?/Text>
+                <Text style={styles.sectionTitle}>健康状态</Text>
                 <View style={styles.healthCard}>
                     <View style={styles.healthItem}>
                         <View style={styles.healthIcon}>
-                            <Icon name="shield-checkmark" size={20} color={colors.green} />
+                            <Ionicons name="shield-checkmark" size={20} color={colors.green} />
                         </View>
                         <View style={styles.healthContent}>
                             <Text style={styles.healthLabel}>健康评分</Text>
                             <Text style={styles.healthValue}>
-                                {mockPet.health_status.health_score} �?
+                                {mockPet.health_status.health_score} 分
                             </Text>
                         </View>
                     </View>
@@ -66,11 +66,11 @@ export default function ProfileScreen() {
 
                     <View style={styles.healthItem}>
                         <View style={[styles.healthIcon, { backgroundColor: "#DCFCE7" }]}>
-                            <Icon name="checkmark-circle" size={20} color={colors.green} />
+                            <Ionicons name="checkmark-circle" size={20} color={colors.green} />
                         </View>
                         <View style={styles.healthContent}>
-                            <Text style={styles.healthLabel}>疫苗状�?/Text>
-                            <Text style={styles.healthValue}>已完�?/Text>
+                            <Text style={styles.healthLabel}>疫苗状态</Text>
+                            <Text style={styles.healthValue}>已完成</Text>
                         </View>
                     </View>
 
@@ -78,7 +78,7 @@ export default function ProfileScreen() {
 
                     <View style={styles.healthItem}>
                         <View style={[styles.healthIcon, { backgroundColor: "#EFF6FF" }]}>
-                            <Icon name="trending-up" size={20} color={colors.primary} />
+                            <Ionicons name="trending-up" size={20} color={colors.primary} />
                         </View>
                         <View style={styles.healthContent}>
                             <Text style={styles.healthLabel}>体重趋势</Text>
@@ -93,11 +93,11 @@ export default function ProfileScreen() {
                 <Text style={styles.sectionTitle}>设备绑定</Text>
                 <View style={styles.deviceCard}>
                     <View style={styles.deviceIcon}>
-                        <Icon name="bluetooth" size={24} color={colors.primary} />
+                        <Ionicons name="bluetooth" size={24} color={colors.primary} />
                     </View>
                     <View style={styles.deviceInfo}>
                         <Text style={styles.deviceName}>PetPulse Pro</Text>
-                        <Text style={styles.deviceStatus}>已连�?· 电量 85%</Text>
+                        <Text style={styles.deviceStatus}>已连接 · 电量 85%</Text>
                     </View>
                     <View style={styles.connectedBadge}>
                         <Text style={styles.connectedText}>在线</Text>
@@ -108,7 +108,7 @@ export default function ProfileScreen() {
             {/* 操作按钮 */}
             <View style={styles.section}>
                 <Pressable style={styles.editBtn}>
-                    <Icon name="create" size={20} color={colors.primary} />
+                    <Ionicons name="create" size={20} color={colors.primary} />
                     <Text style={styles.editBtnText}>编辑档案</Text>
                 </Pressable>
             </View>

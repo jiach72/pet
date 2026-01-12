@@ -22,7 +22,7 @@ const colors = {
 };
 
 /**
- * POI 详情�?(Task 1.3)
+ * POI 详情页 (Task 1.3)
  */
 export default function POIDetailScreen() {
     const { id } = useLocalSearchParams<{ id: string }>();
@@ -45,7 +45,7 @@ export default function POIDetailScreen() {
                 {/* 头图区域 */}
                 <View style={styles.header}>
                     <View style={styles.imagePlaceholder}>
-                        <Icon name="image" size={48} color="#CBD5E1" />
+                        <Ionicons name="image" size={48} color="#CBD5E1" />
                     </View>
                 </View>
 
@@ -54,25 +54,25 @@ export default function POIDetailScreen() {
                     <Text style={styles.name}>{poi.name}</Text>
                     <View style={styles.metaRow}>
                         <View style={styles.metaItem}>
-                            <Icon name="location" size={16} color={colors.muted} />
+                            <Ionicons name="location" size={16} color={colors.muted} />
                             <Text style={styles.metaText}>{poi.distance}</Text>
                         </View>
                         {poi.rating && (
                             <View style={styles.metaItem}>
-                                <Icon name="star" size={16} color="#F59E0B" />
-                                <Text style={styles.metaText}>{poi.rating} �?/Text>
+                                <Ionicons name="star" size={16} color="#F59E0B" />
+                                <Text style={styles.metaText}>{poi.rating} 分</Text>
                             </View>
                         )}
                         <View style={styles.metaItem}>
-                            <Icon name="time" size={16} color={colors.muted} />
-                            <Text style={styles.metaText}>营业�?/Text>
+                            <Ionicons name="time" size={16} color={colors.muted} />
+                            <Text style={styles.metaText}>营业中</Text>
                         </View>
                     </View>
 
                     {/* 地址 */}
                     <View style={styles.section}>
                         <Text style={styles.sectionTitle}>地址</Text>
-                        <Text style={styles.address}>北京市朝阳区望京 SOHO T1 1�?/Text>
+                        <Text style={styles.address}>北京市朝阳区望京 SOHO T1 1层</Text>
                     </View>
 
                     {/* 服务项目 */}
@@ -90,7 +90,7 @@ export default function POIDetailScreen() {
                     {/* 营业时间 */}
                     <View style={styles.section}>
                         <Text style={styles.sectionTitle}>营业时间</Text>
-                        <Text style={styles.infoText}>周一至周�?09:00 - 21:00</Text>
+                        <Text style={styles.infoText}>周一至周日 09:00 - 21:00</Text>
                     </View>
 
                     {/* 联系电话 */}
@@ -103,14 +103,14 @@ export default function POIDetailScreen() {
                 </View>
             </ScrollView>
 
-            {/* 底部操作�?*/}
+            {/* 底部操作栏 */}
             <View style={styles.footer}>
                 <Pressable onPress={handleCall} style={styles.callBtn}>
-                    <Icon name="call" size={20} color={colors.primary} />
+                    <Ionicons name="call" size={20} color={colors.primary} />
                     <Text style={styles.callBtnText}>电话咨询</Text>
                 </Pressable>
                 <Pressable onPress={handleNavigate} style={styles.navBtn}>
-                    <Icon name="navigate" size={20} color={colors.white} />
+                    <Ionicons name="navigate" size={20} color={colors.white} />
                     <Text style={styles.navBtnText}>导航前往</Text>
                 </Pressable>
             </View>

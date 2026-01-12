@@ -15,14 +15,14 @@ const colors = {
 };
 
 /**
- * 我的�?- 宠物档案 + 设置
+ * 我的页 - 宠物档案 + 设置
  */
 export default function ProfileScreen() {
     const user = { name: "小明", petCount: 1 };
     const pet = {
         name: "豆豆",
-        breed: "金毛寻回�?,
-        age: "2�?个月",
+        breed: "金毛寻回犬",
+        age: "2岁3个月",
         weight: "28kg",
         hardwareType: "pro",
         vaccineVerified: true,
@@ -43,14 +43,14 @@ export default function ProfileScreen() {
             <View style={styles.header}>
                 <View style={styles.userRow}>
                     <View style={styles.avatar}>
-                        <Icon name="person" size={32} color="white" />
+                        <Ionicons name="person" size={32} color="white" />
                     </View>
                     <View style={styles.userInfo}>
                         <Text style={styles.userName}>{user.name}</Text>
-                        <Text style={styles.userSubtitle}>已守�?{user.petCount} 只宠�?/Text>
+                        <Text style={styles.userSubtitle}>已守护 {user.petCount} 只宠物</Text>
                     </View>
                     <Pressable style={styles.settingsBtn}>
-                        <Icon name="settings-outline" size={24} color="white" />
+                        <Ionicons name="settings-outline" size={24} color="white" />
                     </Pressable>
                 </View>
             </View>
@@ -60,14 +60,14 @@ export default function ProfileScreen() {
                 <View style={styles.petCard}>
                     <View style={styles.petCardHeader}>
                         <View style={styles.petAvatar}>
-                            <Icon name="paw" size={28} color={colors.primary} />
+                            <Ionicons name="paw" size={28} color={colors.primary} />
                         </View>
                         <View style={styles.petInfo}>
                             <View style={styles.petNameRow}>
                                 <Text style={styles.petName}>{pet.name}</Text>
                                 {pet.vaccineVerified && (
                                     <View style={styles.greenShieldBadge}>
-                                        <Icon name="shield-checkmark" size={12} color={colors.green} />
+                                        <Ionicons name="shield-checkmark" size={12} color={colors.green} />
                                         <Text style={styles.greenShieldText}>绿盾</Text>
                                     </View>
                                 )}
@@ -76,7 +76,7 @@ export default function ProfileScreen() {
                         </View>
                         <View style={styles.healthScore}>
                             <Text style={styles.healthScoreValue}>{pet.healthScore}</Text>
-                            <Text style={styles.healthScoreLabel}>健康�?/Text>
+                            <Text style={styles.healthScoreLabel}>健康分</Text>
                         </View>
                     </View>
 
@@ -113,10 +113,10 @@ export default function ProfileScreen() {
                             ]}
                         >
                             <View style={[styles.menuIcon, { backgroundColor: `${item.color}15` }]}>
-                                <Icon name={item.icon as any} size={20} color={item.color} />
+                                <Ionicons name={item.icon as any} size={20} color={item.color} />
                             </View>
                             <Text style={styles.menuLabel}>{item.label}</Text>
-                            <Icon name="chevron-forward" size={20} color="#CBD5E1" />
+                            <Ionicons name="chevron-forward" size={20} color="#CBD5E1" />
                         </Pressable>
                     ))}
                 </View>
