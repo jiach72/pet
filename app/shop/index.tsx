@@ -8,7 +8,7 @@ import {
     Image,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 
 const colors = {
     primary: "#F97316",
@@ -23,10 +23,10 @@ const colors = {
 // Mock 商品数据
 const products = [
     { id: "1", name: "进口狗粮 10kg", price: 299, originalPrice: 399, image: "🦴", sales: 2341 },
-    { id: "2", name: "智能饮水机", price: 199, originalPrice: 259, image: "💧", sales: 1892 },
+    { id: "2", name: "智能饮水�?, price: 199, originalPrice: 259, image: "💧", sales: 1892 },
     { id: "3", name: "宠物玩具套装", price: 89, originalPrice: 129, image: "🎾", sales: 3421 },
-    { id: "4", name: "冬季保暖窝", price: 159, originalPrice: 199, image: "🛏️", sales: 987 },
-    { id: "5", name: "自动喂食器", price: 349, originalPrice: 449, image: "🍽️", sales: 1234 },
+    { id: "4", name: "冬季保暖�?, price: 159, originalPrice: 199, image: "🛏�?, sales: 987 },
+    { id: "5", name: "自动喂食�?, price: 349, originalPrice: 449, image: "🍽�?, sales: 1234 },
     { id: "6", name: "宠物背包", price: 269, originalPrice: 329, image: "🎒", sales: 876 },
 ];
 
@@ -50,14 +50,14 @@ export default function ShopScreen() {
 
     return (
         <View style={styles.container}>
-            {/* 搜索栏 */}
+            {/* 搜索�?*/}
             <View style={styles.searchBar}>
                 <View style={styles.searchInput}>
-                    <Ionicons name="search" size={20} color={colors.muted} />
+                    <Icon name="search" size={20} color={colors.muted} />
                     <Text style={styles.searchPlaceholder}>搜索商品</Text>
                 </View>
                 <Pressable style={styles.cartBtn}>
-                    <Ionicons name="cart" size={24} color={colors.foreground} />
+                    <Icon name="cart" size={24} color={colors.foreground} />
                     {cartCount > 0 && (
                         <View style={styles.cartBadge}>
                             <Text style={styles.cartBadgeText}>{cartCount}</Text>
@@ -72,7 +72,7 @@ export default function ShopScreen() {
                     {categories.map((cat) => (
                         <Pressable key={cat.id} style={styles.categoryItem}>
                             <View style={styles.categoryIcon}>
-                                <Ionicons name={cat.icon as any} size={24} color={colors.primary} />
+                                <Icon name={cat.icon as any} size={24} color={colors.primary} />
                             </View>
                             <Text style={styles.categoryLabel}>{cat.label}</Text>
                         </Pressable>
@@ -89,11 +89,11 @@ export default function ShopScreen() {
                         <View>
                             <Text style={styles.listingBannerTitle}>宠物寄卖</Text>
                             <Text style={styles.listingBannerSubtitle}>
-                                发布您的宠物，找到有爱的新家庭
+                                发布您的宠物，找到有爱的新家�?
                             </Text>
                         </View>
                     </View>
-                    <Ionicons name="chevron-forward" size={20} color={colors.primary} />
+                    <Icon name="chevron-forward" size={20} color={colors.primary} />
                 </Pressable>
 
                 {/* 热销商品 */}
@@ -102,7 +102,7 @@ export default function ShopScreen() {
                         <Text style={styles.sectionTitle}>热销商品</Text>
                         <Pressable style={styles.viewAllBtn}>
                             <Text style={styles.viewAllText}>查看全部</Text>
-                            <Ionicons name="chevron-forward" size={16} color={colors.primary} />
+                            <Icon name="chevron-forward" size={16} color={colors.primary} />
                         </Pressable>
                     </View>
 
@@ -126,7 +126,7 @@ export default function ShopScreen() {
                                     onPress={() => handleAddToCart(product.id)}
                                     style={styles.addCartBtn}
                                 >
-                                    <Ionicons name="add" size={20} color={colors.white} />
+                                    <Icon name="add" size={20} color={colors.white} />
                                 </Pressable>
                             </View>
                         ))}

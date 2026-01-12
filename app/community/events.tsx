@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 
 const colors = {
     primary: "#8B5CF6",
@@ -30,30 +30,30 @@ const upcomingEvents = [
         id: "1",
         type: "meetup",
         title: "周末狗狗派对",
-        date: "1月15日 14:00",
+        date: "1�?5�?14:00",
         location: "朝阳公园",
         participants: 23,
     },
     {
         id: "2",
         type: "wedding",
-        title: "豆豆 & 萌萌 的婚礼",
-        date: "1月20日 10:00",
+        title: "豆豆 & 萌萌 的婚�?,
+        date: "1�?0�?10:00",
         location: "宠物乐园",
         participants: 15,
     },
     {
         id: "3",
         type: "meetup",
-        title: "猫咪下午茶",
-        date: "1月18日 15:00",
+        title: "猫咪下午�?,
+        date: "1�?8�?15:00",
         location: "喵星人咖啡馆",
         participants: 12,
     },
 ];
 
 /**
- * 社区活动页 (Task 4.1, 4.2)
+ * 社区活动�?(Task 4.1, 4.2)
  */
 export default function EventsScreen() {
     const router = useRouter();
@@ -100,7 +100,7 @@ export default function EventsScreen() {
                         ]}
                     >
                         <View style={[styles.entryIcon, { backgroundColor: `${entry.color}15` }]}>
-                            <Ionicons name={entry.icon as any} size={28} color={entry.color} />
+                            <Icon name={entry.icon as any} size={28} color={entry.color} />
                         </View>
                         <Text style={styles.entryLabel}>{entry.label}</Text>
                     </Pressable>
@@ -114,19 +114,19 @@ export default function EventsScreen() {
             >
                 <View style={styles.charityBannerContent}>
                     <View style={styles.charityIcon}>
-                        <Ionicons name="heart" size={28} color={colors.pink} />
+                        <Icon name="heart" size={28} color={colors.pink} />
                     </View>
                     <View>
                         <Text style={styles.charityTitle}>爱心公益</Text>
                         <Text style={styles.charitySubtitle}>
-                            救助流浪动物，传递温暖
+                            救助流浪动物，传递温�?
                         </Text>
                     </View>
                 </View>
-                <Ionicons name="chevron-forward" size={20} color={colors.pink} />
+                <Icon name="chevron-forward" size={20} color={colors.pink} />
             </Pressable>
 
-            {/* 即将举办的活动 */}
+            {/* 即将举办的活�?*/}
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>即将举办</Text>
 
@@ -135,22 +135,22 @@ export default function EventsScreen() {
                     return (
                         <Pressable key={event.id} style={styles.eventCard}>
                             <View style={[styles.eventIcon, { backgroundColor: `${color}15` }]}>
-                                <Ionicons name={icon as any} size={24} color={color} />
+                                <Icon name={icon as any} size={24} color={color} />
                             </View>
                             <View style={styles.eventContent}>
                                 <Text style={styles.eventTitle}>{event.title}</Text>
                                 <View style={styles.eventMeta}>
-                                    <Ionicons name="calendar" size={14} color={colors.muted} />
+                                    <Icon name="calendar" size={14} color={colors.muted} />
                                     <Text style={styles.eventMetaText}>{event.date}</Text>
                                     <View style={styles.metaDot} />
-                                    <Ionicons name="location" size={14} color={colors.muted} />
+                                    <Icon name="location" size={14} color={colors.muted} />
                                     <Text style={styles.eventMetaText}>{event.location}</Text>
                                 </View>
                                 <View style={styles.eventFooter}>
                                     <View style={styles.participants}>
-                                        <Ionicons name="people" size={14} color={colors.muted} />
+                                        <Icon name="people" size={14} color={colors.muted} />
                                         <Text style={styles.participantsText}>
-                                            {event.participants} 人参与
+                                            {event.participants} 人参�?
                                         </Text>
                                     </View>
                                     <Pressable style={styles.joinBtn}>

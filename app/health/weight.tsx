@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, ScrollView, Pressable, StyleSheet, Dimensions } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 import Svg, { Line, Circle, Polyline, Text as SvgText } from "react-native-svg";
 import type { WeightRecord } from "@/types";
 
@@ -31,14 +31,14 @@ const mockWeightData: WeightRecord[] = [
 ];
 
 /**
- * 体重趋势页 (Task 4.5)
+ * 体重趋势�?(Task 4.5)
  */
 export default function WeightScreen() {
     const currentWeight = mockWeightData[mockWeightData.length - 1].weight;
     const previousWeight = mockWeightData[mockWeightData.length - 2].weight;
     const change = currentWeight - previousWeight;
 
-    // 计算图表点
+    // 计算图表�?
     const minWeight = Math.min(...mockWeightData.map((d) => d.weight)) - 1;
     const maxWeight = Math.max(...mockWeightData.map((d) => d.weight)) + 1;
     const xStep = (CHART_WIDTH - PADDING * 2) / (mockWeightData.length - 1);
@@ -54,7 +54,7 @@ export default function WeightScreen() {
 
     return (
         <ScrollView style={styles.container}>
-            {/* 当前体重卡 */}
+            {/* 当前体重�?*/}
             <View style={styles.currentCard}>
                 <View style={styles.currentContent}>
                     <Text style={styles.currentLabel}>当前体重</Text>
@@ -63,7 +63,7 @@ export default function WeightScreen() {
                         <Text style={styles.currentUnit}>kg</Text>
                     </View>
                     <View style={styles.changeRow}>
-                        <Ionicons
+                        <Icon
                             name={change >= 0 ? "arrow-up" : "arrow-down"}
                             size={16}
                             color={Math.abs(change) > 0.5 ? colors.orange : colors.green}
@@ -75,21 +75,21 @@ export default function WeightScreen() {
                             ]}
                         >
                             {change >= 0 ? "+" : ""}
-                            {change.toFixed(1)} kg 较上次
+                            {change.toFixed(1)} kg 较上�?
                         </Text>
                     </View>
                 </View>
                 <View style={styles.currentIcon}>
-                    <Ionicons name="fitness" size={40} color={colors.primary} />
+                    <Icon name="fitness" size={40} color={colors.primary} />
                 </View>
             </View>
 
-            {/* 趋势图 */}
+            {/* 趋势�?*/}
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>近期趋势</Text>
                 <View style={styles.chartCard}>
                     <Svg width={CHART_WIDTH} height={CHART_HEIGHT}>
-                        {/* Y轴标签 */}
+                        {/* Y轴标�?*/}
                         {[0, 1, 2, 3, 4].map((i) => {
                             const value = minWeight + ((maxWeight - minWeight) / 4) * (4 - i);
                             const y = PADDING + (i * (CHART_HEIGHT - PADDING * 2)) / 4;
@@ -125,7 +125,7 @@ export default function WeightScreen() {
                             fill="none"
                         />
 
-                        {/* 数据点 */}
+                        {/* 数据�?*/}
                         {mockWeightData.map((d, i) => {
                             const x = PADDING + i * xStep;
                             const y = CHART_HEIGHT - PADDING - (d.weight - minWeight) * yScale;
@@ -152,9 +152,9 @@ export default function WeightScreen() {
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>健康建议</Text>
                 <View style={styles.tipCard}>
-                    <Ionicons name="bulb" size={20} color={colors.green} />
+                    <Icon name="bulb" size={20} color={colors.green} />
                     <Text style={styles.tipText}>
-                        体重保持稳定，继续保持当前的饮食和运动习惯。建议每月测量一次体重。
+                        体重保持稳定，继续保持当前的饮食和运动习惯。建议每月测量一次体重�?
                     </Text>
                 </View>
             </View>
@@ -162,7 +162,7 @@ export default function WeightScreen() {
             {/* 添加记录按钮 */}
             <View style={styles.section}>
                 <Pressable style={styles.addBtn}>
-                    <Ionicons name="add-circle" size={24} color={colors.white} />
+                    <Icon name="add-circle" size={24} color={colors.white} />
                     <Text style={styles.addBtnText}>记录体重</Text>
                 </Pressable>
             </View>

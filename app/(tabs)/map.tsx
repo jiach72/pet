@@ -8,7 +8,7 @@ import {
     Linking,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 import { mockPOIs } from "@/data/mockData";
 import { mockPet } from "@/data/mockData";
 
@@ -29,8 +29,8 @@ const colors = {
 const poiConfig: Record<string, { icon: string; color: string; label: string }> = {
     hospital: { icon: "medical", color: colors.red, label: "医院" },
     park: { icon: "leaf", color: colors.green, label: "公园" },
-    cafe: { icon: "cafe", color: colors.orange, label: "咖啡厅" },
-    pool: { icon: "water", color: colors.primary, label: "游泳馆" },
+    cafe: { icon: "cafe", color: colors.orange, label: "咖啡�? },
+    pool: { icon: "water", color: colors.primary, label: "游泳�? },
     store: { icon: "storefront", color: colors.purple, label: "商店" },
 };
 
@@ -43,7 +43,7 @@ const serviceEntries = [
 ];
 
 /**
- * 地图页 - 生活服务 POI + 服务入口
+ * 地图�?- 生活服务 POI + 服务入口
  * Task 1.1
  */
 export default function MapScreen() {
@@ -57,7 +57,7 @@ export default function MapScreen() {
             return "体重上升中，推荐运动场所";
         }
         if (metrics.hrv_stress > 45) {
-            return "压力较高，推荐放松服务";
+            return "压力较高，推荐放松服�?;
         }
         return "附近优质服务";
     };
@@ -68,13 +68,13 @@ export default function MapScreen() {
         return mockPOIs.filter((poi) => poi.type === selectedCategory);
     }, [selectedCategory]);
 
-    // 导航到系统地图
+    // 导航到系统地�?
     const handleNavigate = (poi: typeof mockPOIs[0]) => {
         const url = `https://maps.apple.com/?daddr=${poi.lat},${poi.lng}`;
         Linking.openURL(url);
     };
 
-    // 跳转到服务页面
+    // 跳转到服务页�?
     const handleServicePress = (id: string) => {
         switch (id) {
             case "insurance":
@@ -97,22 +97,22 @@ export default function MapScreen() {
             {/* 模拟地图区域 */}
             <View style={styles.mapArea}>
                 <View style={styles.mapPlaceholder}>
-                    <Ionicons name="map" size={60} color="#CBD5E1" />
+                    <Icon name="map" size={60} color="#CBD5E1" />
                     <Text style={styles.mapPlaceholderText}>地图</Text>
                 </View>
 
                 {/* 当前位置标记 */}
                 <View style={styles.currentLocation}>
-                    <Ionicons name="paw" size={20} color="white" />
+                    <Icon name="paw" size={20} color="white" />
                 </View>
 
                 {/* 安全区域指示 */}
                 <View style={styles.safeZoneIndicator}>
                     <View style={styles.safeZoneDot} />
-                    <Text style={styles.safeZoneText}>安全区域内</Text>
+                    <Text style={styles.safeZoneText}>安全区域�?/Text>
                 </View>
 
-                {/* 分类筛选 */}
+                {/* 分类筛�?*/}
                 <ScrollView
                     horizontal
                     showsHorizontalScrollIndicator={false}
@@ -144,7 +144,7 @@ export default function MapScreen() {
                                 selectedCategory === type && styles.categoryBtnActive,
                             ]}
                         >
-                            <Ionicons
+                            <Icon
                                 name={config.icon as any}
                                 size={16}
                                 color={selectedCategory === type ? colors.white : config.color}
@@ -176,7 +176,7 @@ export default function MapScreen() {
                             ]}
                         >
                             <View style={[styles.serviceIcon, { backgroundColor: `${entry.color}15` }]}>
-                                <Ionicons name={entry.icon as any} size={24} color={entry.color} />
+                                <Icon name={entry.icon as any} size={24} color={entry.color} />
                             </View>
                             <Text style={styles.serviceLabel}>{entry.label}</Text>
                         </Pressable>
@@ -188,7 +188,7 @@ export default function MapScreen() {
                     <View style={styles.sectionHeader}>
                         <Text style={styles.sectionTitle}>附近推荐</Text>
                         <View style={styles.smartBadge}>
-                            <Ionicons name="sparkles" size={14} color={colors.primary} />
+                            <Icon name="sparkles" size={14} color={colors.primary} />
                             <Text style={styles.smartBadgeText}>{getRecommendReason()}</Text>
                         </View>
                     </View>
@@ -206,7 +206,7 @@ export default function MapScreen() {
                                 ]}
                             >
                                 <View style={[styles.poiIcon, { backgroundColor: `${config.color}15` }]}>
-                                    <Ionicons name={config.icon as any} size={20} color={config.color} />
+                                    <Icon name={config.icon as any} size={20} color={config.color} />
                                 </View>
                                 <View style={styles.poiInfo}>
                                     <Text style={styles.poiName}>{poi.name}</Text>
@@ -215,7 +215,7 @@ export default function MapScreen() {
                                         {poi.rating && (
                                             <>
                                                 <View style={styles.poiDot} />
-                                                <Ionicons name="star" size={12} color="#F59E0B" />
+                                                <Icon name="star" size={12} color="#F59E0B" />
                                                 <Text style={styles.poiRating}>{poi.rating}</Text>
                                             </>
                                         )}
@@ -225,7 +225,7 @@ export default function MapScreen() {
                                     onPress={() => handleNavigate(poi)}
                                     style={styles.navBtn}
                                 >
-                                    <Ionicons name="navigate" size={20} color={colors.primary} />
+                                    <Icon name="navigate" size={20} color={colors.primary} />
                                 </Pressable>
                             </Pressable>
                         );

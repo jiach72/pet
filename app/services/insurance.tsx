@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 import { mockPet } from "@/data/mockData";
 
 const colors = {
@@ -18,36 +18,36 @@ const colors = {
 const insuranceProducts = [
     {
         id: "1",
-        name: "基础医疗险",
+        name: "基础医疗�?,
         price: 99,
         originalPrice: 149,
         coverage: "意外伤害 + 疾病医疗",
-        limit: "每年最高赔付 5,000 元",
+        limit: "每年最高赔�?5,000 �?,
         features: ["门诊报销", "住院报销", "手术费用"],
     },
     {
         id: "2",
-        name: "全面保障险",
+        name: "全面保障�?,
         price: 299,
         originalPrice: 399,
-        coverage: "意外 + 疾病 + 第三方责任",
-        limit: "每年最高赔付 20,000 元",
-        features: ["门诊住院", "手术费用", "第三方责任", "走失寻回"],
+        coverage: "意外 + 疾病 + 第三方责�?,
+        limit: "每年最高赔�?20,000 �?,
+        features: ["门诊住院", "手术费用", "第三方责�?, "走失寻回"],
         recommended: true,
     },
     {
         id: "3",
-        name: "尊享无忧险",
+        name: "尊享无忧�?,
         price: 599,
         originalPrice: 799,
         coverage: "全面保障 + 健康管理",
-        limit: "每年最高赔付 50,000 元",
+        limit: "每年最高赔�?50,000 �?,
         features: ["全面医疗", "健康体检", "专属客服", "绿色通道"],
     },
 ];
 
 /**
- * 保险服务页 (Task 6.1, 6.2, 6.3)
+ * 保险服务�?(Task 6.1, 6.2, 6.3)
  */
 export default function InsuranceScreen() {
     const healthScore = mockPet.health_status.health_score;
@@ -55,14 +55,14 @@ export default function InsuranceScreen() {
 
     return (
         <ScrollView style={styles.container}>
-            {/* 健康折扣卡 */}
+            {/* 健康折扣�?*/}
             <View style={styles.discountCard}>
                 <View style={styles.discountLeft}>
                     <View style={styles.discountBadge}>
                         <Text style={styles.discountBadgeText}>健康优惠</Text>
                     </View>
                     <Text style={styles.discountTitle}>
-                        健康分 {healthScore} 分
+                        健康�?{healthScore} �?
                     </Text>
                     <Text style={styles.discountSubtitle}>
                         下月保费可享 {discount}% 折扣
@@ -85,7 +85,7 @@ export default function InsuranceScreen() {
                     >
                         {product.recommended && (
                             <View style={styles.recommendedBadge}>
-                                <Ionicons name="star" size={12} color={colors.white} />
+                                <Icon name="star" size={12} color={colors.white} />
                                 <Text style={styles.recommendedText}>推荐</Text>
                             </View>
                         )}
@@ -94,7 +94,7 @@ export default function InsuranceScreen() {
                             <Text style={styles.productName}>{product.name}</Text>
                             <View style={styles.priceRow}>
                                 <Text style={styles.price}>¥{product.price}</Text>
-                                <Text style={styles.priceUnit}>/月</Text>
+                                <Text style={styles.priceUnit}>/�?/Text>
                                 <Text style={styles.originalPrice}>¥{product.originalPrice}</Text>
                             </View>
                         </View>
@@ -105,7 +105,7 @@ export default function InsuranceScreen() {
                         <View style={styles.features}>
                             {product.features.map((feature) => (
                                 <View key={feature} style={styles.featureItem}>
-                                    <Ionicons name="checkmark-circle" size={16} color={colors.green} />
+                                    <Icon name="checkmark-circle" size={16} color={colors.green} />
                                     <Text style={styles.featureText}>{feature}</Text>
                                 </View>
                             ))}
@@ -136,23 +136,23 @@ export default function InsuranceScreen() {
                 <Text style={styles.sectionTitle}>服务说明</Text>
                 <View style={styles.infoCard}>
                     <View style={styles.infoItem}>
-                        <Ionicons name="flash" size={20} color={colors.primary} />
+                        <Icon name="flash" size={20} color={colors.primary} />
                         <View style={styles.infoContent}>
-                            <Text style={styles.infoTitle}>快速理赔</Text>
-                            <Text style={styles.infoDesc}>在线提交，48小时内处理</Text>
+                            <Text style={styles.infoTitle}>快速理�?/Text>
+                            <Text style={styles.infoDesc}>在线提交�?8小时内处�?/Text>
                         </View>
                     </View>
                     <View style={styles.infoItem}>
-                        <Ionicons name="shield-checkmark" size={20} color={colors.primary} />
+                        <Icon name="shield-checkmark" size={20} color={colors.primary} />
                         <View style={styles.infoContent}>
                             <Text style={styles.infoTitle}>全国通赔</Text>
                             <Text style={styles.infoDesc}>覆盖 3000+ 合作医院</Text>
                         </View>
                     </View>
                     <View style={styles.infoItem}>
-                        <Ionicons name="heart" size={20} color={colors.primary} />
+                        <Icon name="heart" size={20} color={colors.primary} />
                         <View style={styles.infoContent}>
-                            <Text style={styles.infoTitle}>健康激励</Text>
+                            <Text style={styles.infoTitle}>健康激�?/Text>
                             <Text style={styles.infoDesc}>健康分越高，保费越低</Text>
                         </View>
                     </View>

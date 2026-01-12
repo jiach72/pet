@@ -9,7 +9,7 @@ import {
     ActivityIndicator,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 import {
     recognizeVaccineCertificate,
     submitVaccineVerification,
@@ -27,7 +27,7 @@ const colors = {
 };
 
 /**
- * 疫苗上传页 (Task 3.1, 3.2)
+ * 疫苗上传�?(Task 3.1, 3.2)
  */
 export default function VaccineUploadScreen() {
     const router = useRouter();
@@ -42,11 +42,11 @@ export default function VaccineUploadScreen() {
         // import * as ImagePicker from 'expo-image-picker';
         // const result = await ImagePicker.launchImageLibraryAsync({...});
 
-        // Mock: 模拟选择了一张图片
+        // Mock: 模拟选择了一张图�?
         setImageUri("mock://vaccine-certificate.jpg");
         setOcrResult(null);
 
-        // 自动开始识别
+        // 自动开始识�?
         handleRecognize();
     };
 
@@ -60,7 +60,7 @@ export default function VaccineUploadScreen() {
             setOcrResult(result);
 
             if (!result.success) {
-                Alert.alert("识别失败", result.error || "请重新拍摄");
+                Alert.alert("识别失败", result.error || "请重新拍�?);
             }
         } catch (error) {
             Alert.alert("错误", "识别过程出错，请重试");
@@ -103,7 +103,7 @@ export default function VaccineUploadScreen() {
                 {imageUri ? (
                     <>
                         <View style={styles.imagePlaceholder}>
-                            <Ionicons name="document-text" size={48} color={colors.green} />
+                            <Icon name="document-text" size={48} color={colors.green} />
                             <Text style={styles.imagePlaceholderText}>疫苗本已选择</Text>
                         </View>
                         {isRecognizing && (
@@ -115,10 +115,10 @@ export default function VaccineUploadScreen() {
                     </>
                 ) : (
                     <>
-                        <Ionicons name="camera" size={48} color={colors.muted} />
-                        <Text style={styles.uploadText}>点击上传疫苗本照片</Text>
+                        <Icon name="camera" size={48} color={colors.muted} />
+                        <Text style={styles.uploadText}>点击上传疫苗本照�?/Text>
                         <Text style={styles.uploadHint}>
-                            请确保照片清晰，包含完整的疫苗接种记录
+                            请确保照片清晰，包含完整的疫苗接种记�?
                         </Text>
                     </>
                 )}
@@ -174,7 +174,7 @@ export default function VaccineUploadScreen() {
                             <ActivityIndicator color={colors.white} />
                         ) : (
                             <>
-                                <Ionicons
+                                <Icon
                                     name="shield-checkmark"
                                     size={24}
                                     color={colors.white}

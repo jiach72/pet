@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 
 const colors = {
     primary: "#EC4899",
@@ -12,13 +12,13 @@ const colors = {
     blue: "#3B82F6",
 };
 
-// Mock 配对候选
+// Mock 配对候�?
 const matchCandidates = [
     {
         id: "1",
         petName: "萌萌",
-        breed: "金毛寻回犬",
-        age: "2岁",
+        breed: "金毛寻回�?,
+        age: "2�?,
         gender: "female",
         location: "北京朝阳",
         compatibility: 95,
@@ -27,8 +27,8 @@ const matchCandidates = [
     {
         id: "2",
         petName: "大黄",
-        breed: "金毛寻回犬",
-        age: "3岁",
+        breed: "金毛寻回�?,
+        age: "3�?,
         gender: "male",
         location: "北京海淀",
         compatibility: 88,
@@ -38,7 +38,7 @@ const matchCandidates = [
         id: "3",
         petName: "花花",
         breed: "拉布拉多",
-        age: "2岁",
+        age: "2�?,
         gender: "female",
         location: "北京丰台",
         compatibility: 82,
@@ -47,7 +47,7 @@ const matchCandidates = [
 ];
 
 /**
- * 宠物配对页 (Task 4.5)
+ * 宠物配对�?(Task 4.5)
  */
 export default function MatchingScreen() {
     return (
@@ -59,10 +59,10 @@ export default function MatchingScreen() {
                 </View>
                 <View style={styles.myPetInfo}>
                     <Text style={styles.myPetName}>豆豆</Text>
-                    <Text style={styles.myPetBreed}>金毛寻回犬 · 2岁 · ♂</Text>
+                    <Text style={styles.myPetBreed}>金毛寻回�?· 2�?· �?/Text>
                 </View>
                 <Pressable style={styles.editBtn}>
-                    <Ionicons name="settings" size={20} color={colors.muted} />
+                    <Icon name="settings" size={20} color={colors.muted} />
                 </Pressable>
             </View>
 
@@ -70,7 +70,7 @@ export default function MatchingScreen() {
             <View style={styles.filterCard}>
                 <Text style={styles.filterTitle}>配对偏好</Text>
                 <View style={styles.filterTags}>
-                    {["同品种", "年龄相近", "附近5km", "已绿盾认证"].map((tag) => (
+                    {["同品�?, "年龄相近", "附近5km", "已绿盾认�?].map((tag) => (
                         <View key={tag} style={styles.filterTag}>
                             <Text style={styles.filterTagText}>{tag}</Text>
                         </View>
@@ -91,7 +91,7 @@ export default function MatchingScreen() {
                             <View style={styles.matchInfo}>
                                 <View style={styles.matchNameRow}>
                                     <Text style={styles.matchName}>{candidate.petName}</Text>
-                                    <Ionicons
+                                    <Icon
                                         name={candidate.gender === "male" ? "male" : "female"}
                                         size={16}
                                         color={candidate.gender === "male" ? colors.blue : colors.primary}
@@ -106,16 +106,16 @@ export default function MatchingScreen() {
                                 <Text style={styles.compatibilityValue}>
                                     {candidate.compatibility}%
                                 </Text>
-                                <Text style={styles.compatibilityLabel}>匹配度</Text>
+                                <Text style={styles.compatibilityLabel}>匹配�?/Text>
                             </View>
                         </View>
 
                         <View style={styles.matchActions}>
                             <Pressable style={styles.passBtn}>
-                                <Ionicons name="close" size={24} color={colors.muted} />
+                                <Icon name="close" size={24} color={colors.muted} />
                             </Pressable>
                             <Pressable style={styles.likeBtn}>
-                                <Ionicons name="heart" size={24} color={colors.white} />
+                                <Icon name="heart" size={24} color={colors.white} />
                             </Pressable>
                         </View>
                     </View>

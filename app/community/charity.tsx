@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 
 const colors = {
     primary: "#EC4899",
@@ -24,8 +24,8 @@ const rescueCampaigns = [
     },
     {
         id: "2",
-        title: "救助受伤流浪猫",
-        story: "一只受伤的流浪猫需要您的帮助...",
+        title: "救助受伤流浪�?,
+        story: "一只受伤的流浪猫需要您的帮�?..",
         target: 2000,
         raised: 1800,
         donors: 45,
@@ -34,12 +34,12 @@ const rescueCampaigns = [
 
 // Mock 领养数据
 const adoptionListings = [
-    { id: "1", name: "毛毛", type: "狗狗", age: "1岁", location: "北京" },
+    { id: "1", name: "毛毛", type: "狗狗", age: "1�?, location: "北京" },
     { id: "2", name: "咪咪", type: "猫咪", age: "6个月", location: "上海" },
 ];
 
 /**
- * 爱心公益页 (Task 3.1, 3.2, 3.3)
+ * 爱心公益�?(Task 3.1, 3.2, 3.3)
  */
 export default function CharityScreen() {
     return (
@@ -48,17 +48,17 @@ export default function CharityScreen() {
             <View style={styles.statsCard}>
                 <View style={styles.statItem}>
                     <Text style={styles.statValue}>1,234</Text>
-                    <Text style={styles.statLabel}>已救助</Text>
+                    <Text style={styles.statLabel}>已救�?/Text>
                 </View>
                 <View style={styles.statDivider} />
                 <View style={styles.statItem}>
                     <Text style={styles.statValue}>856</Text>
-                    <Text style={styles.statLabel}>已领养</Text>
+                    <Text style={styles.statLabel}>已领�?/Text>
                 </View>
                 <View style={styles.statDivider} />
                 <View style={styles.statItem}>
-                    <Text style={styles.statValue}>¥32万</Text>
-                    <Text style={styles.statLabel}>已筹集</Text>
+                    <Text style={styles.statValue}>¥32�?/Text>
+                    <Text style={styles.statLabel}>已筹�?/Text>
                 </View>
             </View>
 
@@ -89,7 +89,7 @@ export default function CharityScreen() {
                                     </Text>
                                 </View>
                                 <Pressable style={styles.donateBtn}>
-                                    <Ionicons name="heart" size={16} color={colors.white} />
+                                    <Icon name="heart" size={16} color={colors.white} />
                                     <Text style={styles.donateBtnText}>我要捐助</Text>
                                 </Pressable>
                             </View>
@@ -98,7 +98,7 @@ export default function CharityScreen() {
                 })}
             </View>
 
-            {/* 待领养 */}
+            {/* 待领�?*/}
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>等待领养</Text>
                 <View style={styles.adoptionGrid}>

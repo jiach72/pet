@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 
 const colors = {
     primary: "#10B981",
@@ -18,8 +18,8 @@ const colors = {
 const featuredArticles = [
     {
         id: "hrv",
-        title: "如何看懂宠物的 HRV 报告？",
-        subtitle: "心率变异性是评估宠物健康的重要指标",
+        title: "如何看懂宠物�?HRV 报告�?,
+        subtitle: "心率变异性是评估宠物健康的重要指�?,
         type: "article",
         readTime: "5分钟",
         views: 2341,
@@ -27,8 +27,8 @@ const featuredArticles = [
     },
     {
         id: "heart",
-        title: "从心率曲线发现心脏病的早期信号",
-        subtitle: "学会识别异常心率模式，提前预防心脏疾病",
+        title: "从心率曲线发现心脏病的早期信�?,
+        subtitle: "学会识别异常心率模式，提前预防心脏疾�?,
         type: "video",
         duration: "8:32",
         views: 5678,
@@ -36,8 +36,8 @@ const featuredArticles = [
     },
     {
         id: "stress",
-        title: "宠物的'压力'原来有生理指标！",
-        subtitle: "了解 HRV-压力关联，帮助宠物减压",
+        title: "宠物�?压力'原来有生理指标！",
+        subtitle: "了解 HRV-压力关联，帮助宠物减�?,
         type: "article",
         readTime: "4分钟",
         views: 1892,
@@ -64,9 +64,9 @@ export default function EducationScreen() {
 
     return (
         <ScrollView style={styles.container}>
-            {/* 搜索栏 */}
+            {/* 搜索�?*/}
             <Pressable style={styles.searchBar}>
-                <Ionicons name="search" size={20} color={colors.muted} />
+                <Icon name="search" size={20} color={colors.muted} />
                 <Text style={styles.searchPlaceholder}>搜索健康知识</Text>
             </Pressable>
 
@@ -75,21 +75,21 @@ export default function EducationScreen() {
                 {categories.map((cat) => (
                     <Pressable key={cat.id} style={styles.categoryItem}>
                         <View style={styles.categoryIcon}>
-                            <Ionicons name={cat.icon as any} size={24} color={colors.primary} />
+                            <Icon name={cat.icon as any} size={24} color={colors.primary} />
                         </View>
                         <Text style={styles.categoryLabel}>{cat.label}</Text>
-                        <Text style={styles.categoryCount}>{cat.count}篇</Text>
+                        <Text style={styles.categoryCount}>{cat.count}�?/Text>
                     </Pressable>
                 ))}
             </View>
 
-            {/* 精选内容 */}
+            {/* 精选内�?*/}
             <View style={styles.section}>
                 <View style={styles.sectionHeader}>
-                    <Text style={styles.sectionTitle}>精选内容</Text>
+                    <Text style={styles.sectionTitle}>精选内�?/Text>
                     <Pressable style={styles.viewAllBtn}>
                         <Text style={styles.viewAllText}>查看全部</Text>
-                        <Ionicons name="chevron-forward" size={16} color={colors.primary} />
+                        <Icon name="chevron-forward" size={16} color={colors.primary} />
                     </Pressable>
                 </View>
 
@@ -100,7 +100,7 @@ export default function EducationScreen() {
                         style={styles.articleCard}
                     >
                         <View style={styles.articleImage}>
-                            <Ionicons
+                            <Icon
                                 name={article.type === "video" ? "play-circle" : "document-text"}
                                 size={32}
                                 color={article.type === "video" ? colors.orange : colors.primary}
@@ -113,7 +113,7 @@ export default function EducationScreen() {
                                 </View>
                                 {article.type === "video" && (
                                     <View style={[styles.tag, styles.videoTag]}>
-                                        <Ionicons name="videocam" size={12} color={colors.orange} />
+                                        <Icon name="videocam" size={12} color={colors.orange} />
                                         <Text style={styles.videoTagText}>{article.duration}</Text>
                                     </View>
                                 )}
@@ -125,7 +125,7 @@ export default function EducationScreen() {
                                 {article.subtitle}
                             </Text>
                             <View style={styles.articleMeta}>
-                                <Ionicons name="eye" size={14} color={colors.muted} />
+                                <Icon name="eye" size={14} color={colors.muted} />
                                 <Text style={styles.articleMetaText}>
                                     {article.views.toLocaleString()} 阅读
                                 </Text>
@@ -146,7 +146,7 @@ export default function EducationScreen() {
                 <Text style={styles.sectionTitle}>学习进度</Text>
                 <View style={styles.progressCard}>
                     <View style={styles.progressHeader}>
-                        <Text style={styles.progressTitle}>已学习 12 篇</Text>
+                        <Text style={styles.progressTitle}>已学�?12 �?/Text>
                         <Text style={styles.progressPercent}>40%</Text>
                     </View>
                     <View style={styles.progressBar}>
