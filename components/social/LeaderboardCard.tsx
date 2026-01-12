@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 import type { LeaderboardEntry, LeaderboardType } from "@/types";
 
 const colors = {
@@ -110,7 +110,7 @@ export function LeaderboardCard({
                 {showViewAll && (
                     <Pressable onPress={handleViewAll} style={styles.viewAllBtn}>
                         <Text style={styles.viewAllText}>查看全部</Text>
-                        <Ionicons name="chevron-forward" size={16} color={colors.primary} />
+                        <Icon name="chevron-forward" size={16} color={colors.primary} />
                     </Pressable>
                 )}
             </View>

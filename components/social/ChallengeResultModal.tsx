@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet, Modal } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 import type { Challenge } from "@/types";
 
 const colors = {
@@ -101,7 +101,7 @@ export function ChallengeResultModal({
                                 onPress={onShare}
                                 style={[styles.btn, styles.btnSecondary]}
                             >
-                                <Ionicons name="share-outline" size={20} color={colors.primary} />
+                                <Icon name="share-outline" size={20} color={colors.primary} />
                                 <Text style={styles.btnSecondaryText}>分享战绩</Text>
                             </Pressable>
                         )}

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet, Share } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "@/components/Icon";
 import type { MoodDiary } from "@/types";
 
 const colors = {
@@ -67,18 +67,18 @@ export function MoodDiaryCard({
 
             <View style={styles.footer}>
                 <View style={styles.stats}>
-                    <Ionicons name="footsteps" size={16} color={colors.muted} />
+                    <Icon name="footsteps" size={16} color={colors.muted} />
                     <Text style={styles.statsText}>
                         {diary.steps.toLocaleString()} 步
                     </Text>
                     <View style={styles.statsDivider} />
-                    <Ionicons name="heart" size={16} color={colors.muted} />
+                    <Icon name="heart" size={16} color={colors.muted} />
                     <Text style={styles.statsText}>HRV {diary.hrv}</Text>
                 </View>
 
                 {showShareButton && (
                     <Pressable onPress={handleShare} style={styles.shareBtn}>
-                        <Ionicons name="share-outline" size={20} color={colors.primary} />
+                        <Icon name="share-outline" size={20} color={colors.primary} />
                     </Pressable>
                 )}
             </View>
