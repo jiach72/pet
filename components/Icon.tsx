@@ -28,7 +28,7 @@ import {
     Info,
     Phone,
     Camera,
-    Image,
+    Image as ImageIcon,
     CloudUpload,
     Mic,
     Square,
@@ -108,10 +108,17 @@ import {
     Hammer,
     Construction,
     Package,
-} from "lucide-react";
+} from "lucide-react-native";
+
+// 定义 Lucide 图标的通用 Props 类型，以解决映射表类型不匹配问题
+type LucideIcon = React.ComponentType<{
+    size?: string | number;
+    color?: string;
+    strokeWidth?: number;
+}>;
 
 // 图标名称映射 - 基于 Lucide 重构以确保 Web 兼容性
-const iconMap: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
+const iconMap: Record<string, LucideIcon> = {
     // Tab 导航
     "shield-checkmark": ShieldCheck,
     "people": Users,
@@ -156,8 +163,8 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; color?: strin
 
     // 诊断
     "camera": Camera,
-    "images": Image,
-    "image": Image,
+    "images": ImageIcon,
+    "image": ImageIcon,
     "cloud-upload": CloudUpload,
     "mic": Mic,
     "stop": Square,
@@ -187,7 +194,7 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; color?: strin
     "git-compare": RefreshCw,
     "water": Flame, // 暂用 Flame 代替
     "git-branch": Terminal,
-    "radio-button-on": Circle, // 下面定义
+    "radio-button-on": Circle,
     "radio-button-off": Circle,
     "pause": Square,
     "play": Plus,
@@ -293,14 +300,15 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; color?: strin
     "heart-dislike": Heart,
 };
 
-// 额外定义的组件
-function Circle({ size, color }: { size: number; color: string }) {
+// 辅助组件：画圆，需匹配 Lucide 签名以避免类型错误
+function Circle({ size = 24, color = "#000" }: { size?: string | number; color?: string }) {
+    const numericSize = typeof size === 'string' ? parseFloat(size) : size;
     return (
         <View
             style={{
-                width: size,
-                height: size,
-                borderRadius: size / 2,
+                width: numericSize,
+                height: numericSize,
+                borderRadius: numericSize / 2,
                 borderWidth: 2,
                 borderColor: color,
             }}
@@ -316,8 +324,8 @@ interface IconProps {
 }
 
 /**
- * 统一图标组件 - 使用 lucide-react (Web 最佳实践)
- * 兼容 Ionicons API，但使用 SVG 渲染，彻底解决字体加载失败问题
+ * 统一图标组件 - 使用 lucide-react-native (Native 优化)
+ * 兼容 Ionicons API，但使用 SVG 渲染，彻底解决 Web 字体加载失败问题
  */
 export function Icon({ name, size = 24, color = "#000", style }: IconProps) {
     const IconComponent = iconMap[name];
