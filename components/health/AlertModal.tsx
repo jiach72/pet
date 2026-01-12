@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: "100%",
         maxWidth: 340,
-        ...shadows.modal,
+        ...shadows.floating,
     },
     iconContainer: {
         width: 80,
