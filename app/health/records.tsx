@@ -64,7 +64,7 @@ export default function RecordsScreen() {
         return (
             <View style={styles.recordCard}>
                 <View style={[styles.typeIcon, { backgroundColor: `${config.color}15` }]}>
-                    <Ionicons name={config.icon as any} size={20} color={config.color} />
+                    <Icon name={config.icon as any} size={20} color={config.color} />
                 </View>
                 <View style={styles.recordContent}>
                     <View style={styles.recordHeader}>
@@ -92,7 +92,7 @@ export default function RecordsScreen() {
         <View style={styles.container}>
             {/* 添加按钮 */}
             <Pressable style={styles.addBtn}>
-                <Ionicons name="add-circle" size={24} color={colors.white} />
+                <Icon name="add-circle" size={24} color={colors.white} />
                 <Text style={styles.addBtnText}>添加就医记录</Text>
             </Pressable>
 

@@ -87,7 +87,7 @@ export default function ChallengeScreen() {
                                 <Text style={styles.friendOwnerName}>{friend.name}</Text>
                             </View>
                             {selectedFriend === friend.id && (
-                                <Ionicons
+                                <Icon
                                     name="checkmark-circle"
                                     size={24}
                                     color={colors.primary}
@@ -129,15 +129,15 @@ export default function ChallengeScreen() {
                 <Text style={styles.sectionTitle}>挑战规则</Text>
                 <View style={styles.rulesCard}>
                     <View style={styles.ruleItem}>
-                        <Ionicons name="footsteps" size={20} color={colors.primary} />
+                        <Icon name="footsteps" size={20} color={colors.primary} />
                         <Text style={styles.ruleText}>比拼期间累计步数</Text>
                     </View>
                     <View style={styles.ruleItem}>
-                        <Ionicons name="trophy" size={20} color={colors.primary} />
+                        <Icon name="trophy" size={20} color={colors.primary} />
                         <Text style={styles.ruleText}>步数更多者获胜</Text>
                     </View>
                     <View style={styles.ruleItem}>
-                        <Ionicons name="megaphone" size={20} color={colors.primary} />
+                        <Icon name="megaphone" size={20} color={colors.primary} />
                         <Text style={styles.ruleText}>输家自动发布认输动态（可关闭）</Text>
                     </View>
                 </View>
@@ -154,7 +154,7 @@ export default function ChallengeScreen() {
                         (!selectedFriend || isSubmitting) && styles.submitBtnDisabled,
                     ]}
                 >
-                    <Ionicons name="flash" size={24} color={colors.white} />
+                    <Icon name="flash" size={24} color={colors.white} />
                     <Text style={styles.submitBtnText}>
                         {isSubmitting ? "发起中..." : "发起挑战"}
                     </Text>

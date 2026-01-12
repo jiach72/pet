@@ -45,7 +45,7 @@ export default function POIDetailScreen() {
                 {/* 头图区域 */}
                 <View style={styles.header}>
                     <View style={styles.imagePlaceholder}>
-                        <Ionicons name="image" size={48} color="#CBD5E1" />
+                        <Icon name="image" size={48} color="#CBD5E1" />
                     </View>
                 </View>
 
@@ -54,17 +54,17 @@ export default function POIDetailScreen() {
                     <Text style={styles.name}>{poi.name}</Text>
                     <View style={styles.metaRow}>
                         <View style={styles.metaItem}>
-                            <Ionicons name="location" size={16} color={colors.muted} />
+                            <Icon name="location" size={16} color={colors.muted} />
                             <Text style={styles.metaText}>{poi.distance}</Text>
                         </View>
                         {poi.rating && (
                             <View style={styles.metaItem}>
-                                <Ionicons name="star" size={16} color="#F59E0B" />
+                                <Icon name="star" size={16} color="#F59E0B" />
                                 <Text style={styles.metaText}>{poi.rating} 分</Text>
                             </View>
                         )}
                         <View style={styles.metaItem}>
-                            <Ionicons name="time" size={16} color={colors.muted} />
+                            <Icon name="time" size={16} color={colors.muted} />
                             <Text style={styles.metaText}>营业中</Text>
                         </View>
                     </View>
@@ -106,11 +106,11 @@ export default function POIDetailScreen() {
             {/* 底部操作栏 */}
             <View style={styles.footer}>
                 <Pressable onPress={handleCall} style={styles.callBtn}>
-                    <Ionicons name="call" size={20} color={colors.primary} />
+                    <Icon name="call" size={20} color={colors.primary} />
                     <Text style={styles.callBtnText}>电话咨询</Text>
                 </Pressable>
                 <Pressable onPress={handleNavigate} style={styles.navBtn}>
-                    <Ionicons name="navigate" size={20} color={colors.white} />
+                    <Icon name="navigate" size={20} color={colors.white} />
                     <Text style={styles.navBtnText}>导航前往</Text>
                 </Pressable>
             </View>

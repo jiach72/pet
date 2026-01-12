@@ -58,7 +58,7 @@ export default function PetListingScreen() {
             {/* 发布按钮 */}
             <View style={styles.publishBar}>
                 <Pressable style={styles.publishBtn}>
-                    <Ionicons name="add-circle" size={24} color={colors.white} />
+                    <Icon name="add-circle" size={24} color={colors.white} />
                     <Text style={styles.publishBtnText}>发布寄卖</Text>
                 </Pressable>
             </View>
@@ -93,7 +93,7 @@ export default function PetListingScreen() {
                                     <Text style={styles.petName}>{pet.petName}</Text>
                                     {pet.verified && (
                                         <View style={styles.verifiedBadge}>
-                                            <Ionicons
+                                            <Icon
                                                 name="shield-checkmark"
                                                 size={12}
                                                 color={colors.green}
@@ -108,7 +108,7 @@ export default function PetListingScreen() {
                                 <View style={styles.petMeta}>
                                     <Text style={styles.petMetaText}>{pet.age}</Text>
                                     <View style={styles.metaDot} />
-                                    <Ionicons
+                                    <Icon
                                         name={pet.gender === "male" ? "male" : "female"}
                                         size={14}
                                         color={pet.gender === "male" ? "#3B82F6" : "#EC4899"}
@@ -120,7 +120,7 @@ export default function PetListingScreen() {
                                 <View style={styles.listingFooter}>
                                     <Text style={styles.petPrice}>¥{pet.price.toLocaleString()}</Text>
                                     <View style={styles.sellerRating}>
-                                        <Ionicons name="star" size={12} color="#F59E0B" />
+                                        <Icon name="star" size={12} color="#F59E0B" />
                                         <Text style={styles.ratingText}>{pet.sellerRating}</Text>
                                     </View>
                                 </View>

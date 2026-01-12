@@ -43,14 +43,14 @@ export default function ProfileScreen() {
             <View style={styles.header}>
                 <View style={styles.userRow}>
                     <View style={styles.avatar}>
-                        <Ionicons name="person" size={32} color="white" />
+                        <Icon name="person" size={32} color="white" />
                     </View>
                     <View style={styles.userInfo}>
                         <Text style={styles.userName}>{user.name}</Text>
                         <Text style={styles.userSubtitle}>已守护 {user.petCount} 只宠物</Text>
                     </View>
                     <Pressable style={styles.settingsBtn}>
-                        <Ionicons name="settings-outline" size={24} color="white" />
+                        <Icon name="settings-outline" size={24} color="white" />
                     </Pressable>
                 </View>
             </View>
@@ -60,14 +60,14 @@ export default function ProfileScreen() {
                 <View style={styles.petCard}>
                     <View style={styles.petCardHeader}>
                         <View style={styles.petAvatar}>
-                            <Ionicons name="paw" size={28} color={colors.primary} />
+                            <Icon name="paw" size={28} color={colors.primary} />
                         </View>
                         <View style={styles.petInfo}>
                             <View style={styles.petNameRow}>
                                 <Text style={styles.petName}>{pet.name}</Text>
                                 {pet.vaccineVerified && (
                                     <View style={styles.greenShieldBadge}>
-                                        <Ionicons name="shield-checkmark" size={12} color={colors.green} />
+                                        <Icon name="shield-checkmark" size={12} color={colors.green} />
                                         <Text style={styles.greenShieldText}>绿盾</Text>
                                     </View>
                                 )}
@@ -113,10 +113,10 @@ export default function ProfileScreen() {
                             ]}
                         >
                             <View style={[styles.menuIcon, { backgroundColor: `${item.color}15` }]}>
-                                <Ionicons name={item.icon as any} size={20} color={item.color} />
+                                <Icon name={item.icon as any} size={20} color={item.color} />
                             </View>
                             <Text style={styles.menuLabel}>{item.label}</Text>
-                            <Ionicons name="chevron-forward" size={20} color="#CBD5E1" />
+                            <Icon name="chevron-forward" size={20} color="#CBD5E1" />
                         </Pressable>
                     ))}
                 </View>

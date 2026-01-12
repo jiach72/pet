@@ -40,17 +40,17 @@ export default function WeddingScreen() {
             {/* 操作按钮 */}
             <View style={styles.actions}>
                 <Pressable style={styles.createBtn}>
-                    <Ionicons name="create" size={24} color={colors.white} />
+                    <Icon name="create" size={24} color={colors.white} />
                     <Text style={styles.createBtnText}>创建婚礼邀请</Text>
                 </Pressable>
 
                 <View style={styles.actionRow}>
                     <Pressable style={styles.actionBtn}>
-                        <Ionicons name="share-social" size={20} color={colors.primary} />
+                        <Icon name="share-social" size={20} color={colors.primary} />
                         <Text style={styles.actionBtnText}>分享邀请</Text>
                     </Pressable>
                     <Pressable style={styles.actionBtn}>
-                        <Ionicons name="images" size={20} color={colors.primary} />
+                        <Icon name="images" size={20} color={colors.primary} />
                         <Text style={styles.actionBtnText}>婚礼相册</Text>
                     </Pressable>
                 </View>
@@ -68,7 +68,7 @@ export default function WeddingScreen() {
                     ].map((item, index) => (
                         <Pressable key={index} style={styles.serviceItem}>
                             <View style={styles.serviceIcon}>
-                                <Ionicons name={item.icon as any} size={24} color={colors.primary} />
+                                <Icon name={item.icon as any} size={24} color={colors.primary} />
                             </View>
                             <Text style={styles.serviceLabel}>{item.label}</Text>
                         </Pressable>

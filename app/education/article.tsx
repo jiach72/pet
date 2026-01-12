@@ -65,11 +65,11 @@ export default function ArticleScreen() {
                 <Text style={styles.title}>{article.title}</Text>
                 <View style={styles.meta}>
                     <View style={styles.metaItem}>
-                        <Ionicons name="time" size={14} color={colors.muted} />
+                        <Icon name="time" size={14} color={colors.muted} />
                         <Text style={styles.metaText}>5 分钟阅读</Text>
                     </View>
                     <View style={styles.metaItem}>
-                        <Ionicons name="eye" size={14} color={colors.muted} />
+                        <Icon name="eye" size={14} color={colors.muted} />
                         <Text style={styles.metaText}>2,341 阅读</Text>
                     </View>
                 </View>
@@ -110,7 +110,7 @@ export default function ArticleScreen() {
                         .map(([key, value]) => (
                             <View key={key} style={styles.relatedItem}>
                                 <View style={styles.relatedIcon}>
-                                    <Ionicons name="document-text" size={20} color={colors.primary} />
+                                    <Icon name="document-text" size={20} color={colors.primary} />
                                 </View>
                                 <Text style={styles.relatedItemTitle} numberOfLines={2}>
                                     {value.title}

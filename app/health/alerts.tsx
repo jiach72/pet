@@ -49,7 +49,7 @@ export default function AlertsScreen() {
         return (
             <View style={[styles.alertCard, { borderLeftColor: config.color }]}>
                 <View style={[styles.alertIcon, { backgroundColor: config.bg }]}>
-                    <Ionicons name={config.icon as any} size={20} color={config.color} />
+                    <Icon name={config.icon as any} size={20} color={config.color} />
                 </View>
                 <View style={styles.alertContent}>
                     <Text style={styles.alertTitle}>{item.title}</Text>
@@ -64,7 +64,7 @@ export default function AlertsScreen() {
         <View style={styles.container}>
             {/* 紧急联系 */}
             <Pressable onPress={handleCallVet} style={styles.emergencyBtn}>
-                <Ionicons name="call" size={20} color={colors.white} />
+                <Icon name="call" size={20} color={colors.white} />
                 <Text style={styles.emergencyBtnText}>紧急联系兽医</Text>
             </Pressable>
 
@@ -76,7 +76,7 @@ export default function AlertsScreen() {
                 contentContainerStyle={styles.list}
                 ListEmptyComponent={
                     <View style={styles.empty}>
-                        <Ionicons name="checkmark-circle" size={48} color={colors.muted} />
+                        <Icon name="checkmark-circle" size={48} color={colors.muted} />
                         <Text style={styles.emptyText}>暂无预警记录</Text>
                     </View>
                 }

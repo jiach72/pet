@@ -103,7 +103,7 @@ export default function VaccineUploadScreen() {
                 {imageUri ? (
                     <>
                         <View style={styles.imagePlaceholder}>
-                            <Ionicons name="document-text" size={48} color={colors.green} />
+                            <Icon name="document-text" size={48} color={colors.green} />
                             <Text style={styles.imagePlaceholderText}>疫苗本已选择</Text>
                         </View>
                         {isRecognizing && (
@@ -115,7 +115,7 @@ export default function VaccineUploadScreen() {
                     </>
                 ) : (
                     <>
-                        <Ionicons name="camera" size={48} color={colors.muted} />
+                        <Icon name="camera" size={48} color={colors.muted} />
                         <Text style={styles.uploadText}>点击上传疫苗本照片</Text>
                         <Text style={styles.uploadHint}>
                             请确保照片清晰，包含完整的疫苗接种记录
@@ -174,7 +174,7 @@ export default function VaccineUploadScreen() {
                             <ActivityIndicator color={colors.white} />
                         ) : (
                             <>
-                                <Ionicons
+                                <Icon
                                     name="shield-checkmark"
                                     size={24}
                                     color={colors.white}

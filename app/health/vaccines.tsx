@@ -60,7 +60,7 @@ export default function VaccinesScreen() {
         return (
             <View style={styles.vaccineCard}>
                 <View style={styles.vaccineIcon}>
-                    <Ionicons name="shield-checkmark" size={24} color={colors.green} />
+                    <Icon name="shield-checkmark" size={24} color={colors.green} />
                 </View>
                 <View style={styles.vaccineContent}>
                     <Text style={styles.vaccineName}>{item.name}</Text>
@@ -85,13 +85,13 @@ export default function VaccinesScreen() {
         <View style={styles.container}>
             {/* 添加按钮 */}
             <Pressable style={styles.addBtn}>
-                <Ionicons name="add-circle" size={24} color={colors.white} />
+                <Icon name="add-circle" size={24} color={colors.white} />
                 <Text style={styles.addBtnText}>添加疫苗记录</Text>
             </Pressable>
 
             {/* 提醒卡 */}
             <View style={styles.reminderCard}>
-                <Ionicons name="notifications" size={20} color={colors.orange} />
+                <Icon name="notifications" size={20} color={colors.orange} />
                 <Text style={styles.reminderText}>
                     狂犬疫苗将于 2026-12-15 到期，请提前预约接种
                 </Text>

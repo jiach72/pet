@@ -51,17 +51,17 @@ export default function MemorialScreen() {
             {/* 操作按钮 */}
             <View style={styles.actions}>
                 <Pressable style={styles.createBtn}>
-                    <Ionicons name="flower" size={24} color={colors.foreground} />
+                    <Icon name="flower" size={24} color={colors.foreground} />
                     <Text style={styles.createBtnText}>创建纪念页</Text>
                 </Pressable>
 
                 <View style={styles.actionRow}>
                     <Pressable style={styles.actionBtn}>
-                        <Ionicons name="images" size={20} color={colors.muted} />
+                        <Icon name="images" size={20} color={colors.muted} />
                         <Text style={styles.actionBtnText}>回忆相册</Text>
                     </Pressable>
                     <Pressable style={styles.actionBtn}>
-                        <Ionicons name="chatbubble-ellipses" size={20} color={colors.muted} />
+                        <Icon name="chatbubble-ellipses" size={20} color={colors.muted} />
                         <Text style={styles.actionBtnText}>留言悼念</Text>
                     </Pressable>
                 </View>
@@ -78,13 +78,13 @@ export default function MemorialScreen() {
                     ].map((item, index) => (
                         <Pressable key={index} style={styles.serviceItem}>
                             <View style={styles.serviceIcon}>
-                                <Ionicons name={item.icon as any} size={24} color={colors.muted} />
+                                <Icon name={item.icon as any} size={24} color={colors.muted} />
                             </View>
                             <View style={styles.serviceContent}>
                                 <Text style={styles.serviceLabel}>{item.label}</Text>
                                 <Text style={styles.serviceDesc}>{item.desc}</Text>
                             </View>
-                            <Ionicons name="chevron-forward" size={20} color={colors.muted} />
+                            <Icon name="chevron-forward" size={20} color={colors.muted} />
                         </Pressable>
                     ))}
                 </View>

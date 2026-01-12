@@ -62,7 +62,7 @@ export default function MatchingScreen() {
                     <Text style={styles.myPetBreed}>金毛寻回犬 · 2岁 · ♂</Text>
                 </View>
                 <Pressable style={styles.editBtn}>
-                    <Ionicons name="settings" size={20} color={colors.muted} />
+                    <Icon name="settings" size={20} color={colors.muted} />
                 </Pressable>
             </View>
 
@@ -91,7 +91,7 @@ export default function MatchingScreen() {
                             <View style={styles.matchInfo}>
                                 <View style={styles.matchNameRow}>
                                     <Text style={styles.matchName}>{candidate.petName}</Text>
-                                    <Ionicons
+                                    <Icon
                                         name={candidate.gender === "male" ? "male" : "female"}
                                         size={16}
                                         color={candidate.gender === "male" ? colors.blue : colors.primary}
@@ -112,10 +112,10 @@ export default function MatchingScreen() {
 
                         <View style={styles.matchActions}>
                             <Pressable style={styles.passBtn}>
-                                <Ionicons name="close" size={24} color={colors.muted} />
+                                <Icon name="close" size={24} color={colors.muted} />
                             </Pressable>
                             <Pressable style={styles.likeBtn}>
-                                <Ionicons name="heart" size={24} color={colors.white} />
+                                <Icon name="heart" size={24} color={colors.white} />
                             </Pressable>
                         </View>
                     </View>

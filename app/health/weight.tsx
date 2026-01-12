@@ -63,7 +63,7 @@ export default function WeightScreen() {
                         <Text style={styles.currentUnit}>kg</Text>
                     </View>
                     <View style={styles.changeRow}>
-                        <Ionicons
+                        <Icon
                             name={change >= 0 ? "arrow-up" : "arrow-down"}
                             size={16}
                             color={Math.abs(change) > 0.5 ? colors.orange : colors.green}
@@ -80,7 +80,7 @@ export default function WeightScreen() {
                     </View>
                 </View>
                 <View style={styles.currentIcon}>
-                    <Ionicons name="fitness" size={40} color={colors.primary} />
+                    <Icon name="fitness" size={40} color={colors.primary} />
                 </View>
             </View>
 
@@ -152,7 +152,7 @@ export default function WeightScreen() {
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>健康建议</Text>
                 <View style={styles.tipCard}>
-                    <Ionicons name="bulb" size={20} color={colors.green} />
+                    <Icon name="bulb" size={20} color={colors.green} />
                     <Text style={styles.tipText}>
                         体重保持稳定，继续保持当前的饮食和运动习惯。建议每月测量一次体重。
                     </Text>
@@ -162,7 +162,7 @@ export default function WeightScreen() {
             {/* 添加记录按钮 */}
             <View style={styles.section}>
                 <Pressable style={styles.addBtn}>
-                    <Ionicons name="add-circle" size={24} color={colors.white} />
+                    <Icon name="add-circle" size={24} color={colors.white} />
                     <Text style={styles.addBtnText}>记录体重</Text>
                 </Pressable>
             </View>

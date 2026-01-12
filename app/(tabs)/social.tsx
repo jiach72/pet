@@ -68,7 +68,7 @@ export default function SocialScreen() {
                         style={styles.viewAllBtn}
                     >
                         <Text style={styles.viewAllText}>查看全部</Text>
-                        <Ionicons name="chevron-forward" size={16} color={colors.primary} />
+                        <Icon name="chevron-forward" size={16} color={colors.primary} />
                     </Pressable>
                 </View>
                 {todayDiary && (
@@ -99,7 +99,7 @@ export default function SocialScreen() {
                         pressed && styles.pkButtonPressed,
                     ]}
                 >
-                    <Ionicons name="flash" size={24} color="white" />
+                    <Icon name="flash" size={24} color="white" />
                     <Text style={styles.pkButtonText}>发起 1V1 挑战</Text>
                 </Pressable>
             </View>

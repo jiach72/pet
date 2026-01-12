@@ -89,7 +89,7 @@ export default function CharityScreen() {
                                     </Text>
                                 </View>
                                 <Pressable style={styles.donateBtn}>
-                                    <Ionicons name="heart" size={16} color={colors.white} />
+                                    <Icon name="heart" size={16} color={colors.white} />
                                     <Text style={styles.donateBtnText}>我要捐助</Text>
                                 </Pressable>
                             </View>

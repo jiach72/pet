@@ -97,13 +97,13 @@ export default function MapScreen() {
             {/* 模拟地图区域 */}
             <View style={styles.mapArea}>
                 <View style={styles.mapPlaceholder}>
-                    <Ionicons name="map" size={60} color="#CBD5E1" />
+                    <Icon name="map" size={60} color="#CBD5E1" />
                     <Text style={styles.mapPlaceholderText}>地图</Text>
                 </View>
 
                 {/* 当前位置标记 */}
                 <View style={styles.currentLocation}>
-                    <Ionicons name="paw" size={20} color="white" />
+                    <Icon name="paw" size={20} color="white" />
                 </View>
 
                 {/* 安全区域指示 */}
@@ -144,7 +144,7 @@ export default function MapScreen() {
                                 selectedCategory === type && styles.categoryBtnActive,
                             ]}
                         >
-                            <Ionicons
+                            <Icon
                                 name={config.icon as any}
                                 size={16}
                                 color={selectedCategory === type ? colors.white : config.color}
@@ -176,7 +176,7 @@ export default function MapScreen() {
                             ]}
                         >
                             <View style={[styles.serviceIcon, { backgroundColor: `${entry.color}15` }]}>
-                                <Ionicons name={entry.icon as any} size={24} color={entry.color} />
+                                <Icon name={entry.icon as any} size={24} color={entry.color} />
                             </View>
                             <Text style={styles.serviceLabel}>{entry.label}</Text>
                         </Pressable>
@@ -188,7 +188,7 @@ export default function MapScreen() {
                     <View style={styles.sectionHeader}>
                         <Text style={styles.sectionTitle}>附近推荐</Text>
                         <View style={styles.smartBadge}>
-                            <Ionicons name="sparkles" size={14} color={colors.primary} />
+                            <Icon name="sparkles" size={14} color={colors.primary} />
                             <Text style={styles.smartBadgeText}>{getRecommendReason()}</Text>
                         </View>
                     </View>
@@ -206,7 +206,7 @@ export default function MapScreen() {
                                 ]}
                             >
                                 <View style={[styles.poiIcon, { backgroundColor: `${config.color}15` }]}>
-                                    <Ionicons name={config.icon as any} size={20} color={config.color} />
+                                    <Icon name={config.icon as any} size={20} color={config.color} />
                                 </View>
                                 <View style={styles.poiInfo}>
                                     <Text style={styles.poiName}>{poi.name}</Text>
@@ -215,7 +215,7 @@ export default function MapScreen() {
                                         {poi.rating && (
                                             <>
                                                 <View style={styles.poiDot} />
-                                                <Ionicons name="star" size={12} color="#F59E0B" />
+                                                <Icon name="star" size={12} color="#F59E0B" />
                                                 <Text style={styles.poiRating}>{poi.rating}</Text>
                                             </>
                                         )}
@@ -225,7 +225,7 @@ export default function MapScreen() {
                                     onPress={() => handleNavigate(poi)}
                                     style={styles.navBtn}
                                 >
-                                    <Ionicons name="navigate" size={20} color={colors.primary} />
+                                    <Icon name="navigate" size={20} color={colors.primary} />
                                 </Pressable>
                             </Pressable>
                         );

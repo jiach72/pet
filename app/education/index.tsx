@@ -66,7 +66,7 @@ export default function EducationScreen() {
         <ScrollView style={styles.container}>
             {/* 搜索栏 */}
             <Pressable style={styles.searchBar}>
-                <Ionicons name="search" size={20} color={colors.muted} />
+                <Icon name="search" size={20} color={colors.muted} />
                 <Text style={styles.searchPlaceholder}>搜索健康知识</Text>
             </Pressable>
 
@@ -75,7 +75,7 @@ export default function EducationScreen() {
                 {categories.map((cat) => (
                     <Pressable key={cat.id} style={styles.categoryItem}>
                         <View style={styles.categoryIcon}>
-                            <Ionicons name={cat.icon as any} size={24} color={colors.primary} />
+                            <Icon name={cat.icon as any} size={24} color={colors.primary} />
                         </View>
                         <Text style={styles.categoryLabel}>{cat.label}</Text>
                         <Text style={styles.categoryCount}>{cat.count}篇</Text>
@@ -89,7 +89,7 @@ export default function EducationScreen() {
                     <Text style={styles.sectionTitle}>精选内容</Text>
                     <Pressable style={styles.viewAllBtn}>
                         <Text style={styles.viewAllText}>查看全部</Text>
-                        <Ionicons name="chevron-forward" size={16} color={colors.primary} />
+                        <Icon name="chevron-forward" size={16} color={colors.primary} />
                     </Pressable>
                 </View>
 
@@ -100,7 +100,7 @@ export default function EducationScreen() {
                         style={styles.articleCard}
                     >
                         <View style={styles.articleImage}>
-                            <Ionicons
+                            <Icon
                                 name={article.type === "video" ? "play-circle" : "document-text"}
                                 size={32}
                                 color={article.type === "video" ? colors.orange : colors.primary}
@@ -113,7 +113,7 @@ export default function EducationScreen() {
                                 </View>
                                 {article.type === "video" && (
                                     <View style={[styles.tag, styles.videoTag]}>
-                                        <Ionicons name="videocam" size={12} color={colors.orange} />
+                                        <Icon name="videocam" size={12} color={colors.orange} />
                                         <Text style={styles.videoTagText}>{article.duration}</Text>
                                     </View>
                                 )}
@@ -125,7 +125,7 @@ export default function EducationScreen() {
                                 {article.subtitle}
                             </Text>
                             <View style={styles.articleMeta}>
-                                <Ionicons name="eye" size={14} color={colors.muted} />
+                                <Icon name="eye" size={14} color={colors.muted} />
                                 <Text style={styles.articleMetaText}>
                                     {article.views.toLocaleString()} 阅读
                                 </Text>

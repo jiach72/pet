@@ -100,7 +100,7 @@ export default function EventsScreen() {
                         ]}
                     >
                         <View style={[styles.entryIcon, { backgroundColor: `${entry.color}15` }]}>
-                            <Ionicons name={entry.icon as any} size={28} color={entry.color} />
+                            <Icon name={entry.icon as any} size={28} color={entry.color} />
                         </View>
                         <Text style={styles.entryLabel}>{entry.label}</Text>
                     </Pressable>
@@ -114,7 +114,7 @@ export default function EventsScreen() {
             >
                 <View style={styles.charityBannerContent}>
                     <View style={styles.charityIcon}>
-                        <Ionicons name="heart" size={28} color={colors.pink} />
+                        <Icon name="heart" size={28} color={colors.pink} />
                     </View>
                     <View>
                         <Text style={styles.charityTitle}>爱心公益</Text>
@@ -123,7 +123,7 @@ export default function EventsScreen() {
                         </Text>
                     </View>
                 </View>
-                <Ionicons name="chevron-forward" size={20} color={colors.pink} />
+                <Icon name="chevron-forward" size={20} color={colors.pink} />
             </Pressable>
 
             {/* 即将举办的活动 */}
@@ -135,20 +135,20 @@ export default function EventsScreen() {
                     return (
                         <Pressable key={event.id} style={styles.eventCard}>
                             <View style={[styles.eventIcon, { backgroundColor: `${color}15` }]}>
-                                <Ionicons name={icon as any} size={24} color={color} />
+                                <Icon name={icon as any} size={24} color={color} />
                             </View>
                             <View style={styles.eventContent}>
                                 <Text style={styles.eventTitle}>{event.title}</Text>
                                 <View style={styles.eventMeta}>
-                                    <Ionicons name="calendar" size={14} color={colors.muted} />
+                                    <Icon name="calendar" size={14} color={colors.muted} />
                                     <Text style={styles.eventMetaText}>{event.date}</Text>
                                     <View style={styles.metaDot} />
-                                    <Ionicons name="location" size={14} color={colors.muted} />
+                                    <Icon name="location" size={14} color={colors.muted} />
                                     <Text style={styles.eventMetaText}>{event.location}</Text>
                                 </View>
                                 <View style={styles.eventFooter}>
                                     <View style={styles.participants}>
-                                        <Ionicons name="people" size={14} color={colors.muted} />
+                                        <Icon name="people" size={14} color={colors.muted} />
                                         <Text style={styles.participantsText}>
                                             {event.participants} 人参与
                                         </Text>

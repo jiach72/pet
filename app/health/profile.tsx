@@ -52,7 +52,7 @@ export default function ProfileScreen() {
                 <View style={styles.healthCard}>
                     <View style={styles.healthItem}>
                         <View style={styles.healthIcon}>
-                            <Ionicons name="shield-checkmark" size={20} color={colors.green} />
+                            <Icon name="shield-checkmark" size={20} color={colors.green} />
                         </View>
                         <View style={styles.healthContent}>
                             <Text style={styles.healthLabel}>健康评分</Text>
@@ -66,7 +66,7 @@ export default function ProfileScreen() {
 
                     <View style={styles.healthItem}>
                         <View style={[styles.healthIcon, { backgroundColor: "#DCFCE7" }]}>
-                            <Ionicons name="checkmark-circle" size={20} color={colors.green} />
+                            <Icon name="checkmark-circle" size={20} color={colors.green} />
                         </View>
                         <View style={styles.healthContent}>
                             <Text style={styles.healthLabel}>疫苗状态</Text>
@@ -78,7 +78,7 @@ export default function ProfileScreen() {
 
                     <View style={styles.healthItem}>
                         <View style={[styles.healthIcon, { backgroundColor: "#EFF6FF" }]}>
-                            <Ionicons name="trending-up" size={20} color={colors.primary} />
+                            <Icon name="trending-up" size={20} color={colors.primary} />
                         </View>
                         <View style={styles.healthContent}>
                             <Text style={styles.healthLabel}>体重趋势</Text>
@@ -93,7 +93,7 @@ export default function ProfileScreen() {
                 <Text style={styles.sectionTitle}>设备绑定</Text>
                 <View style={styles.deviceCard}>
                     <View style={styles.deviceIcon}>
-                        <Ionicons name="bluetooth" size={24} color={colors.primary} />
+                        <Icon name="bluetooth" size={24} color={colors.primary} />
                     </View>
                     <View style={styles.deviceInfo}>
                         <Text style={styles.deviceName}>PetPulse Pro</Text>
@@ -108,7 +108,7 @@ export default function ProfileScreen() {
             {/* 操作按钮 */}
             <View style={styles.section}>
                 <Pressable style={styles.editBtn}>
-                    <Ionicons name="create" size={20} color={colors.primary} />
+                    <Icon name="create" size={20} color={colors.primary} />
                     <Text style={styles.editBtnText}>编辑档案</Text>
                 </Pressable>
             </View>

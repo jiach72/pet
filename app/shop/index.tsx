@@ -53,11 +53,11 @@ export default function ShopScreen() {
             {/* 搜索栏 */}
             <View style={styles.searchBar}>
                 <View style={styles.searchInput}>
-                    <Ionicons name="search" size={20} color={colors.muted} />
+                    <Icon name="search" size={20} color={colors.muted} />
                     <Text style={styles.searchPlaceholder}>搜索商品</Text>
                 </View>
                 <Pressable style={styles.cartBtn}>
-                    <Ionicons name="cart" size={24} color={colors.foreground} />
+                    <Icon name="cart" size={24} color={colors.foreground} />
                     {cartCount > 0 && (
                         <View style={styles.cartBadge}>
                             <Text style={styles.cartBadgeText}>{cartCount}</Text>
@@ -72,7 +72,7 @@ export default function ShopScreen() {
                     {categories.map((cat) => (
                         <Pressable key={cat.id} style={styles.categoryItem}>
                             <View style={styles.categoryIcon}>
-                                <Ionicons name={cat.icon as any} size={24} color={colors.primary} />
+                                <Icon name={cat.icon as any} size={24} color={colors.primary} />
                             </View>
                             <Text style={styles.categoryLabel}>{cat.label}</Text>
                         </Pressable>
@@ -93,7 +93,7 @@ export default function ShopScreen() {
                             </Text>
                         </View>
                     </View>
-                    <Ionicons name="chevron-forward" size={20} color={colors.primary} />
+                    <Icon name="chevron-forward" size={20} color={colors.primary} />
                 </Pressable>
 
                 {/* 热销商品 */}
@@ -102,7 +102,7 @@ export default function ShopScreen() {
                         <Text style={styles.sectionTitle}>热销商品</Text>
                         <Pressable style={styles.viewAllBtn}>
                             <Text style={styles.viewAllText}>查看全部</Text>
-                            <Ionicons name="chevron-forward" size={16} color={colors.primary} />
+                            <Icon name="chevron-forward" size={16} color={colors.primary} />
                         </Pressable>
                     </View>
 
@@ -126,7 +126,7 @@ export default function ShopScreen() {
                                     onPress={() => handleAddToCart(product.id)}
                                     style={styles.addCartBtn}
                                 >
-                                    <Ionicons name="add" size={20} color={colors.white} />
+                                    <Icon name="add" size={20} color={colors.white} />
                                 </Pressable>
                             </View>
                         ))}

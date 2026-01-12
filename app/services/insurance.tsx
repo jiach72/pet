@@ -85,7 +85,7 @@ export default function InsuranceScreen() {
                     >
                         {product.recommended && (
                             <View style={styles.recommendedBadge}>
-                                <Ionicons name="star" size={12} color={colors.white} />
+                                <Icon name="star" size={12} color={colors.white} />
                                 <Text style={styles.recommendedText}>推荐</Text>
                             </View>
                         )}
@@ -105,7 +105,7 @@ export default function InsuranceScreen() {
                         <View style={styles.features}>
                             {product.features.map((feature) => (
                                 <View key={feature} style={styles.featureItem}>
-                                    <Ionicons name="checkmark-circle" size={16} color={colors.green} />
+                                    <Icon name="checkmark-circle" size={16} color={colors.green} />
                                     <Text style={styles.featureText}>{feature}</Text>
                                 </View>
                             ))}
@@ -136,21 +136,21 @@ export default function InsuranceScreen() {
                 <Text style={styles.sectionTitle}>服务说明</Text>
                 <View style={styles.infoCard}>
                     <View style={styles.infoItem}>
-                        <Ionicons name="flash" size={20} color={colors.primary} />
+                        <Icon name="flash" size={20} color={colors.primary} />
                         <View style={styles.infoContent}>
                             <Text style={styles.infoTitle}>快速理赔</Text>
                             <Text style={styles.infoDesc}>在线提交，48小时内处理</Text>
                         </View>
                     </View>
                     <View style={styles.infoItem}>
-                        <Ionicons name="shield-checkmark" size={20} color={colors.primary} />
+                        <Icon name="shield-checkmark" size={20} color={colors.primary} />
                         <View style={styles.infoContent}>
                             <Text style={styles.infoTitle}>全国通赔</Text>
                             <Text style={styles.infoDesc}>覆盖 3000+ 合作医院</Text>
                         </View>
                     </View>
                     <View style={styles.infoItem}>
-                        <Ionicons name="heart" size={20} color={colors.primary} />
+                        <Icon name="heart" size={20} color={colors.primary} />
                         <View style={styles.infoContent}>
                             <Text style={styles.infoTitle}>健康激励</Text>
                             <Text style={styles.infoDesc}>健康分越高，保费越低</Text>
