@@ -1,11 +1,12 @@
 import React from "react";
-import { View, StyleSheet, Platform } from "react-native";
+import { View } from "react-native";
 import {
     IoShieldCheckmark,
     IoPeople,
     IoMap,
     IoPerson,
     IoHeart,
+    IoHeartOutline,
     IoThermometer,
     IoPulse,
     IoFlash,
@@ -31,6 +32,7 @@ import {
     IoMic,
     IoStop,
     IoAdd,
+    IoAddCircle,
     IoSync,
     IoBatteryHalf,
     IoBatteryDead,
@@ -39,6 +41,7 @@ import {
     IoRadioOutline,
     IoLocation,
     IoNavigateCircle,
+    IoNavigate,
     IoStopCircle,
     IoDocumentAttach,
     IoShareOutline,
@@ -62,9 +65,89 @@ import {
     IoShield,
     IoHelpCircle,
     IoStar,
+    IoSearch,
+    IoCart,
+    IoImage,
+    IoTime,
+    IoCreate,
+    IoBluetooth,
+    IoTrendingUp,
+    IoCafe,
+    IoPaw,
+    IoRibbon,
+    IoFootsteps,
+    IoTrophy,
+    IoMegaphone,
+    IoSparkles,
+    IoHappy,
+    IoSad,
+    IoFlame,
+    IoMoon,
+    IoSunny,
+    IoRainy,
+    IoCloudy,
+    IoEllipsisHorizontal,
+    IoEye,
+    IoEyeOff,
+    IoMail,
+    IoLockClosed,
+    IoSettings,
+    IoPencil,
+    IoTrash,
+    IoDownload,
+    IoShare,
+    IoLink,
+    IoCopy,
+    IoQrCode,
+    IoScan,
+    IoWifi,
+    IoCellular,
+    IoBatteryFull,
+    IoVolumeMedium,
+    IoVolumeOff,
+    IoMusicalNotes,
+    IoGameController,
+    IoFastFood,
+    IoBeer,
+    IoPizza,
+    IoIceCream,
+    IoBicycle,
+    IoCar,
+    IoBus,
+    IoTrain,
+    IoAirplaneOutline,
+    IoBoat,
+    IoRocket,
+    IoPlanet,
+    IoGlobe,
+    IoEarth,
+    IoCompass,
+    IoFlag,
+    IoPin,
+    IoBookmark,
+    IoPricetag,
+    IoTicket,
+    IoCard,
+    IoCash,
+    IoWallet,
+    IoGift,
+    IoBag,
+    IoBasket,
+    IoReceipt,
+    IoBarcode,
+    IoPrint,
+    IoServer,
+    IoCloudOutline,
+    IoCloud,
+    IoTerminal,
+    IoCode,
+    IoConstruct,
+    IoHammer,
+    IoBuild,
+    IoExtensionPuzzle,
 } from "react-icons/io5";
 
-// 图标名称映射
+// 图标名称映射 - 完整版
 const iconMap: Record<string, React.ComponentType<{ size?: number; color?: string }>> = {
     // Tab 导航
     "shield-checkmark": IoShieldCheckmark,
@@ -74,11 +157,13 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; color?: strin
 
     // 健康
     "heart": IoHeart,
+    "heart-outline": IoHeartOutline,
     "thermometer": IoThermometer,
     "pulse": IoPulse,
     "flash": IoFlash,
     "fitness": IoFitness,
     "medical": IoMedical,
+    "paw": IoPaw,
 
     // 通用
     "notifications": IoNotifications,
@@ -89,9 +174,15 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; color?: strin
     "arrow-back": IoArrowBack,
     "close": IoClose,
     "add": IoAdd,
+    "add-circle": IoAddCircle,
     "sync": IoSync,
     "refresh": IoRefresh,
     "bulb": IoBulb,
+    "search": IoSearch,
+    "create": IoCreate,
+    "pencil": IoPencil,
+    "settings": IoSettings,
+    "ellipsis-horizontal": IoEllipsisHorizontal,
 
     // 预警
     "alert-circle": IoAlertCircle,
@@ -102,22 +193,29 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; color?: strin
     // 诊断
     "camera": IoCamera,
     "images": IoImages,
+    "image": IoImage,
     "cloud-upload": IoCloudUpload,
     "mic": IoMic,
     "stop": IoStop,
+    "eye": IoEye,
+    "eye-off": IoEyeOff,
 
     // 安全
     "radio": IoRadio,
     "battery-half": IoBatteryHalf,
     "battery-dead": IoBatteryDead,
+    "battery-full": IoBatteryFull,
     "locate": IoLocate,
     "people-circle": IoPeopleCircle,
     "radio-outline": IoRadioOutline,
     "location": IoLocation,
     "navigate-circle": IoNavigateCircle,
+    "navigate": IoNavigate,
     "stop-circle": IoStopCircle,
     "document-attach": IoDocumentAttach,
     "share-outline": IoShareOutline,
+    "share": IoShare,
+    "bluetooth": IoBluetooth,
 
     // 智能家居
     "restaurant": IoRestaurant,
@@ -130,8 +228,11 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; color?: strin
     "pause": IoPause,
     "play": IoPlay,
     "trash-outline": IoTrashOutline,
+    "trash": IoTrash,
     "cog": IoCog,
     "airplane": IoAirplane,
+    "wifi": IoWifi,
+    "cellular": IoCellular,
 
     // 社区
     "home": IoHome,
@@ -142,9 +243,89 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; color?: strin
     "shield": IoShield,
     "help-circle": IoHelpCircle,
     "star": IoStar,
+    "ribbon": IoRibbon,
+    "flag": IoFlag,
 
-    // 心形特殊处理
-    "heart-dislike": IoHeart,
+    // 挑战赛
+    "footsteps": IoFootsteps,
+    "trophy": IoTrophy,
+    "megaphone": IoMegaphone,
+    "flame": IoFlame,
+    "sparkles": IoSparkles,
+
+    // 商城
+    "cart": IoCart,
+    "bag": IoBag,
+    "basket": IoBasket,
+    "pricetag": IoPricetag,
+    "gift": IoGift,
+    "card": IoCard,
+    "cash": IoCash,
+    "wallet": IoWallet,
+    "receipt": IoReceipt,
+    "barcode": IoBarcode,
+
+    // POI
+    "cafe": IoCafe,
+    "time": IoTime,
+    "pin": IoPin,
+    "bookmark": IoBookmark,
+
+    // 天气/情绪
+    "happy": IoHappy,
+    "sad": IoSad,
+    "moon": IoMoon,
+    "sunny": IoSunny,
+    "rainy": IoRainy,
+    "cloudy": IoCloudy,
+
+    // 趋势
+    "trending-up": IoTrendingUp,
+
+    // 其他
+    "mail": IoMail,
+    "lock-closed": IoLockClosed,
+    "link": IoLink,
+    "copy": IoCopy,
+    "download": IoDownload,
+    "print": IoPrint,
+    "qr-code": IoQrCode,
+    "scan": IoScan,
+    "volume-medium": IoVolumeMedium,
+    "volume-off": IoVolumeOff,
+    "musical-notes": IoMusicalNotes,
+    "game-controller": IoGameController,
+    "globe": IoGlobe,
+    "earth": IoEarth,
+    "compass": IoCompass,
+    "ticket": IoTicket,
+    "code": IoCode,
+    "terminal": IoTerminal,
+    "server": IoServer,
+    "cloud": IoCloud,
+    "cloud-outline": IoCloudOutline,
+    "construct": IoConstruct,
+    "hammer": IoHammer,
+    "build": IoBuild,
+    "extension-puzzle": IoExtensionPuzzle,
+
+    // 交通
+    "bicycle": IoBicycle,
+    "car": IoCar,
+    "bus": IoBus,
+    "train": IoTrain,
+    "boat": IoBoat,
+    "rocket": IoRocket,
+    "planet": IoPlanet,
+
+    // 食物
+    "fast-food": IoFastFood,
+    "beer": IoBeer,
+    "pizza": IoPizza,
+    "ice-cream": IoIceCream,
+
+    // 兼容别名
+    "heart-dislike": IoHeartOutline,
 };
 
 interface IconProps {
@@ -162,6 +343,10 @@ export function Icon({ name, size = 24, color = "#000", style }: IconProps) {
     const IconComponent = iconMap[name];
 
     if (!IconComponent) {
+        // 开发时打印缺失图标
+        if (__DEV__) {
+            console.warn(`[Icon] Missing icon mapping: "${name}"`);
+        }
         // 返回空占位符
         return (
             <View style={[{ width: size, height: size }, style]} />
@@ -174,12 +359,6 @@ export function Icon({ name, size = 24, color = "#000", style }: IconProps) {
         </View>
     );
 }
-
-// 导出兼容 Ionicons 的组件
-export const Ionicons = {
-    // 作为组件使用
-    render: Icon,
-};
 
 // 默认导出
 export default Icon;
