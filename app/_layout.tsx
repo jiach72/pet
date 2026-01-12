@@ -1,39 +1,45 @@
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useState } from "react";
-import { View, ActivityIndicator } from "react-native";
-import * as Font from "expo-font";
-import { Ionicons } from "@expo/vector-icons";
+import { useEffect, useState, useCallback } from "react";
+import { View, ActivityIndicator, Text } from "react-native";
+import * as SplashScreen from "expo-splash-screen";
+
+// 保持 splash screen 直到准备完毕
+SplashScreen.preventAutoHideAsync().catch(() => { });
 
 /**
  * 根布局：Stack 导航 + Modal 支持
- * - 预加载 Ionicons 字体
- * - (tabs) 组作为默认路由
- * - lost-mode 作为全屏 Modal 覆盖
+ * - 简化字体加载，避免阻塞
  */
 export default function RootLayout() {
-    const [fontsLoaded, setFontsLoaded] = useState(false);
+    const [appIsReady, setAppIsReady] = useState(false);
 
     useEffect(() => {
-        async function loadFonts() {
-            await Font.loadAsync({
-                ...Ionicons.font,
-            });
-            setFontsLoaded(true);
+        async function prepare() {
+            try {
+                // 短暂延迟确保布局就绪
+                await new Promise(resolve => setTimeout(resolve, 100));
+            } catch (e) {
+                console.warn(e);
+            } finally {
+                setAppIsReady(true);
+            }
         }
-        loadFonts();
+        prepare();
     }, []);
 
-    if (!fontsLoaded) {
-        return (
-            <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-                <ActivityIndicator size="large" color="#3B82F6" />
-            </View>
-        );
+    const onLayoutRootView = useCallback(async () => {
+        if (appIsReady) {
+            await SplashScreen.hideAsync().catch(() => { });
+        }
+    }, [appIsReady]);
+
+    if (!appIsReady) {
+        return null;
     }
 
     return (
-        <>
+        <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
             <StatusBar style="auto" />
             <Stack screenOptions={{ headerShown: false }}>
                 {/* Tab 导航组 */}
@@ -48,6 +54,6 @@ export default function RootLayout() {
                     }}
                 />
             </Stack>
-        </>
+        </View>
     );
 }
